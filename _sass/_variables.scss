@@ -1,0 +1,44 @@
+
+// Our variables
+$base-font-size:   16px;
+$base-font-weight: 400;
+$small-font-size:  $base-font-size * 0.875;
+$base-line-height: 1.5;
+
+$spacing-unit:     30px;
+
+//Fonts
+
+$font-url--google : 'https://fonts.googleapis.com/css?family=Press+Start+2P';
+$base-font-family   : "Helvetica Neue", Helvetica, Arial, sans-serif;
+$typing-font        : "Press Start 2P";
+$button-font-size : 1.5em;
+
+
+//Color Palette
+
+$black          :       #111;
+$white          :    #fdfdfd;
+$green-iterm    :    #00C300;
+$green-metallic :    #438240;
+
+$grey-color:       #828282;
+$grey-color-light: lighten($grey-color, 40%);
+$grey-color-dark:  darken($grey-color, 25%);
+
+// Colors applied
+  // Text
+$text-color         : $white;
+$link-color         : $green-iterm;
+$link-color-visited : darken($link-color, 15%);
+$link-color-hover   : lighten($link-color, 15%);
+  // Background
+$background-color   : $black;
+
+// Width of the content area
+$content-width:    800px;
+
+$on-palm:          600px;
+$on-laptop:        800px;
+
+//
