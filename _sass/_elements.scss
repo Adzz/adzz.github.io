@@ -1,9 +1,7 @@
 
 // BUTTONS
 
-//Var needed to get active action:
-
 .homepage-btns {
-  @include pixelated-btns($green-iterm, $black, $button-font-size, 50vh);
+  @include pixelated-btns($green-iterm, $black, 2em, 50vh);
   margin: 20px;
 }
