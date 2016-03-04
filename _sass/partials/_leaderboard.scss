@@ -1,0 +1,28 @@
+.leaderboard {
+
+  font-family: $typing-font;
+  text-align: center;
+
+  .numbers {
+    font-size: 1em;
+  }
+
+  h1 {
+    font-size: 3.5em;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+
+  ul {
+    text-align: left;
+    margin: auto;
+    max-width: fit-content;
+  }
+
+  li {
+  }
+
+  a {
+    font-size: 2em;
+  }
+}
