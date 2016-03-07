@@ -19,3 +19,8 @@ github_username:  Adzz
 markdown: kramdown
 sass:
   style: compressed
+
+# XML feed
+name: Adzz
+description: Insights into the world of code as seen by me.
+url: adzz.github.io
