@@ -1,0 +1,30 @@
+
+  @-webkit-keyframes typing {
+      from { width: 100% }
+      to { width:0 }
+  }
+
+  @-webkit-keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: $white }
+  }
+
+  @-webkit-keyframes flashing-text {
+    from, to { color: $green-iterm }
+    50%      { color: $white }
+  }
+
+  @-moz-keyframes typing {
+      from { width: 100% }
+      to   { width:0 }
+  }
+
+  @-moz-keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: $white }
+  }
+
+  @-moz-keyframes flashing-text {
+    from, to { color: $green-iterm }
+    50%      { color: $white }
+  }

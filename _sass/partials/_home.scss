@@ -11,26 +11,6 @@
   width: 100vw;
   text-align: center;
 
-  @-webkit-keyframes typing {
-      from { width: 100% }
-      to { width:0 }
-  }
-
-  @-webkit-keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: $white }
-  }
-
-  @-moz-keyframes typing {
-      from { width: 100% }
-      to { width:0 }
-  }
-
-  @-moz-keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: $white }
-  }
-
   .heading {
       color: $green-iterm;
       font-size: 4em;
