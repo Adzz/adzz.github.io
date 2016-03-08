@@ -2,6 +2,7 @@
 // Our variables
 $base-font-size:   16px;
 $base-font-weight: 400;
+$font-weight--medium: 600px;
 $small-font-size:  $base-font-size * 0.875;
 $medium-font-size: $base-font-size * 0.9;
 $base-line-height: 1.5;
@@ -20,6 +21,8 @@ $heading-font     : "Futura";
 $black          :       #111;
 $white          :    #fdfdfd;
 $green-iterm    :    #00C300;
+$green-iterm--dark: darken($green-iterm, 15%);
+$green-iterm--light: lighten($green-iterm, 15%);
 $green-metallic :    #438240;
 
 $grey-color:       #828282;
@@ -27,13 +30,15 @@ $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
 // Colors applied
-  // Text
+// Text
+$highlighted-text-color : $white;
 $text-color         : $black;
 $link-color         : $green-iterm;
-$link-color-visited : darken($link-color, 15%);
-$link-color-hover   : lighten($link-color, 15%);
-  // Background
+$link-color-visited : $green-iterm--dark;
+$link-color-hover   : $green-iterm--light;
+// Background
 $background-color   : $white;
+$highlighted-text-bg-color: $green-iterm--dark;
 
 // Width of the content area
 $content-width:    800px;

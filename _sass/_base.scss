@@ -25,7 +25,15 @@ body {
     font-kerning: normal;
 }
 
+::selection {
+  color: $highlighted-text-color;
+  background:$highlighted-text-bg-color ;
+}
 
+::moz-selection {
+  color: $highlighted-text-color;
+  background:$highlighted-text-bg-color ;
+}
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
@@ -86,7 +94,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: $base-font-weight;
 }
 
-
+p {
+  font-family: $base-font-family;
+  letter-spacing: $letter-spacing--close;
+}
 
 /**
  * Links
