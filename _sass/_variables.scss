@@ -6,13 +6,13 @@ $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
 
 $spacing-unit:     30px;
-
+$letter-spacing--close: -1px;
 //Fonts
 
 $font-url--google : 'https://fonts.googleapis.com/css?family=Press+Start+2P';
-$base-font-family   : "Helvetica Neue", Helvetica, Arial, sans-serif;
-$typing-font        : "Press Start 2P";
-
+$base-font-family : "Letter Gothic Std", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$typing-font      : "Press Start 2P";
+$heading-font     : "Futura";
 
 //Color Palette
 
@@ -27,12 +27,12 @@ $grey-color-dark:  darken($grey-color, 25%);
 
 // Colors applied
   // Text
-$text-color         : $white;
+$text-color         : $black;
 $link-color         : $green-iterm;
 $link-color-visited : darken($link-color, 15%);
 $link-color-hover   : lighten($link-color, 15%);
   // Background
-$background-color   : $black;
+$background-color   : $white;
 
 // Width of the content area
 $content-width:    800px;
@@ -40,4 +40,15 @@ $content-width:    800px;
 $on-palm:          600px;
 $on-laptop:        800px;
 
-//
+//Layout
+  // Footer
+  $footer-height          : 5vh;
+  $footer-height--minus   : -5vh;
+  // Header
+  $header-height--minimum : 5vh;
+  $header-height--minus   : -5vh;
+  $main-height--minimum   : 90vh;
+
+
+
+

@@ -11,7 +11,7 @@
 
   @-webkit-keyframes flashing-text {
     from, to { color: $green-iterm }
-    50%      { color: $white }
+    50%      { color: $black }
   }
 
   @-moz-keyframes typing {
@@ -26,5 +26,5 @@
 
   @-moz-keyframes flashing-text {
     from, to { color: $green-iterm }
-    50%      { color: $white }
+    50%      { color: $black }
   }

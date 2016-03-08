@@ -25,6 +25,7 @@
   color: $font-color;
   font-size: $font-size;
   top: $btn-top;
+  z-index: 1;
 
   &:active {
     top: $btn-top + 1vh;

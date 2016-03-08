@@ -1,0 +1,19 @@
+
+/**
+ * Page content
+
+ */
+.container {
+    margin-bottom: $footer-height--minus;
+    min-height: $main-height--minimum;
+}
+
+.container:after {
+  content: "";
+  display: block;
+  height: $footer-height--minus;
+}
+
+
+
+
