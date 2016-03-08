@@ -1,19 +1,37 @@
 
-/**
- * Page content
-
- */
 .container {
     margin-bottom: $footer-height--minus;
     min-height: $main-height--minimum;
-}
+    padding: 10px;
 
-.container:after {
-  content: "";
-  display: block;
-  height: $footer-height--minus;
-}
+  &:after {
+    content: "";
+    display: block;
+    height: $footer-height--minus;
+  }
 
+  ul {
+    text-align: center;
+  }
+
+  .post-title, .heading {
+    font-family: $heading-font;
+  }
+
+  .heading {
+    font-size: 3em;
+    margin-left: 3vw;
+  }
+
+  .post-title {
+    font-size: 1.5em;
+  }
+
+  .excerpt {
+    letter-spacing: -1px;
+  }
+
+}
 
 
 
