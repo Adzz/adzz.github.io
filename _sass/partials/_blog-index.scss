@@ -3,28 +3,18 @@
     margin-bottom: $footer-height--minus;
     min-height: $main-height--minimum;
     padding: 10px;
+    margin-bottom: $footer-height;
+    margin-top: $footer-height;
 
-  &:after {
-    content: "";
-    display: block;
-    height: $footer-height--minus;
-  }
 
   ul {
     text-align: center;
   }
 
-  .post-title, .heading {
-    font-family: $heading-font;
-  }
-
-  .heading {
-    font-size: 3em;
-    margin-left: 3vw;
-  }
 
   .post-title {
     font-size: 1.5em;
+    font-family: $heading-font;
   }
 
   .excerpt {
