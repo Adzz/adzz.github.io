@@ -38,9 +38,13 @@
     background: rgba($green-iterm--dark, 0.3);
  }
 
-  em {
-    font-style:normal;
-    background-color: $green-iterm;
+  img {
+    margin: 0 auto;
+  }
+
+  code {
+    max-width:95vw;
+    margin-right:auto;
   }
 
     h2 {
