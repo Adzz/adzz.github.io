@@ -21,7 +21,8 @@
 .post-content {
     margin-bottom: $spacing-unit;
     letter-spacing: $letter-spacing--close;
-    margin: 5%;
+    margin: 1% 20% 5% 20%;
+    max-width: 75vw;
 
   .highlighted {
 
@@ -38,14 +39,11 @@
     background: rgba($green-iterm--dark, 0.3);
  }
 
-  img {
+  img, code {
+    display: block;
     margin: 0 auto;
   }
 
-  code {
-    max-width:95vw;
-    margin-right:auto;
-  }
 
     h2 {
         font-size: 32px;

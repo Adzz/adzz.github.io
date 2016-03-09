@@ -39,35 +39,31 @@ body {
  * Set `margin-bottom` to maintain vertical rhythm
  */
 h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
+p, blockquote, pre, code,
 ul, ol, dl, figure,
 %vertical-rhythm {
     margin-bottom: $spacing-unit / 2;
 }
 
 
-
-/**
- * Images
- */
-img {
-    max-width: 100%;
-    vertical-align: middle;
-}
-
-
-
 /**
  * Figures
  */
+
+figure {
+  display: block;
+}
+
 figure > img {
     display: block;
 }
 
 figcaption {
     font-size: $small-font-size;
+    font-family: $caption-font;
+    text-align: center;
+    margin-top: 2px;
 }
-
 
 
 /**
@@ -141,28 +137,19 @@ blockquote {
  */
 pre,
 code {
-    font-size: 15px;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
-    background-color: #eef;
-}
+    text-align: center;
+    font-size: $base-font-size;
+  }
 
 code {
-    padding: 1px 5px;
+  padding:5px;
+  font-family: $code-font;
+  height: fit-content;
+  max-width: 66vw;
+  background-color: $code-bg-color;
+  border: 1px solid $grey-color-light;
+  border-radius: 3px;
 }
-
-pre {
-    padding: 8px 12px;
-    overflow-x: auto;
-
-    > code {
-        border: 0;
-        padding-right: 0;
-        padding-left: 0;
-    }
-}
-
-
 
 /**
  * Wrapper

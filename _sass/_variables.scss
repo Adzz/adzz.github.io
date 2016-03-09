@@ -15,6 +15,8 @@ $font-url--google : 'https://fonts.googleapis.com/css?family=Press+Start+2P';
 $base-font-family : "Letter Gothic Std", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $typing-font      : "Press Start 2P";
 $heading-font     : "Futura";
+$code-font        :  "Source Code Pro";
+$caption-font      : $heading-font;
 
 //Color Palette
 
@@ -39,6 +41,7 @@ $link-color-hover   : $green-iterm--light;
 // Background
 $background-color   : $white;
 $highlighted-text-bg-color: $green-iterm--dark;
+$code-bg-color      : #E8E9ED;
 
 // Width of the content area
 $content-width:    800px;
