@@ -1,3 +1,10 @@
 ---
-title: CV
+layout: homepage
+title: cv
+category: cv
 ---
+{% capture my-cv %}{% include cv.md %}{% endcapture %}
+
+<section class="cv">
+{{ my-cv | markdownify }}
+</section>
