@@ -26,13 +26,13 @@
 
   .highlighted {
 
-    border-top-right-radius:105px;
-    -moz-border-radius-topright:105px;
-    -webkit-border-top-right-radius:105px;
+    border-top-right-radius:1px;
+    -moz-border-radius-topright:1px;
+    -webkit-border-top-right-radius:1px;
 
-    -webkit-border-bottom-left-radius: 102px;
-    -moz-border-radius-bottomleft: 102px;
-    border-bottom-left-radius: 102px;
+    -webkit-border-bottom-left-radius: 1px;
+    -moz-border-radius-bottomleft: 1px;
+    border-bottom-left-radius: 1px;
 
     padding-top: 3px;
     padding:3px;
@@ -55,6 +55,7 @@
 
     h3 {
         font-size: 26px;
+        font-family: $heading-font;
 
         @include media-query($on-laptop) {
             font-size: 22px;

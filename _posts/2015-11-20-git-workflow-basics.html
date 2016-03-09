@@ -1,0 +1,62 @@
+---
+layout: post
+title: Git Workflow Basics
+category: makers
+---
+
+
+<p>Here at Makers Academy, just like in the real world, git is used a lot. It's a <a href="http://betterexplained.com/articles/intro-to-distributed-version-control-illustrated/">distributed version control system</a> don't you know. You don't? Yea me neither.</p>
+
+<p>Despite how incomprehensible that sounds it is (loosely) analogous to that remote control in the Adam Sandler classic <a href="http://www.imdb.com/title/tt0389860/">Click</a> (we've all seen it.)*.</p>
+
+<p>Essentially it's a way of tracking changes you make to files; the save button on Word but on steroids, or, like a juice cleanse maybe. You can save changes, save as' changes, you can revert back to different saves at any time (basically time travel), can split a project up and have several people working on the same thing at once, then merge everyone's work together, and more! So much version, so much control.</p>
+
+<p>Like most things, the more you use it the better you'll understand it**. To help with that here is a common workflow we use at Makers to familiarise yourself with.</p>
+
+<p>Imagine you are writing a story with three other people. Someone has already written the first chapter and given it a title. They have saved this file into a folder called Book, and put it on <a href="https://github.com/">Github</a>.</p>
+
+<p>Github acts like a folder on someone's computer that you all have access too. You can all see the folder 'Book', access the file in it and change it on github. The work that exists there already is the 'master branch' -  that is to say it is a master folder that will eventually contain the finished product. If you edited that folder on github, all the changes you made would be visible to everyone else, and you don't want any one to see the first draft!</p>
+
+<p>The first step is, then, to 'fork' the 'repo'. Repo is short for repository; it's just a name for a folder that contains work. When you fork it, you create a new 'branch' which will track all the work you do. But we don't want to spend our whole time on github; we want to be able to work on the book offline, and we want at least two copies of the branch incase something goes wrong on our computer or on github. To do this we 'clone' the repo down to our computer. Move to a directory on your computer where you want to save it - for example 'Documents' - then type:</p>
+
+<pre><code>$git clone</code></pre>
+
+<p>followed by the web address of where your fork is on github. something like this:</p>
+
+<pre><code>$git clone https://github.com/mygithubusername/Book</code></pre>
+
+<p>Github tells you this address when you fork the repo.</p>
+
+<p>Once it's on your computer you can open the file and work away. As you make changes you save the file normally, but you also 'add' them, and then 'commit' changes with git. This updates your branch to reflect the new work you have done. So, edit file, save it normally, git add, then git commit:</p>
+
+<pre><code>$git add book
+$git commit</code></pre>
+
+<p>To make sure the branch you have on github is the same as the clone you made of it on your computer, you 'push' changes back up to <em>your</em> branch on github like so:</p>
+
+<pre><code>$git push</code></pre>
+
+<p>Finally, when you are finished with the whole chapter, and are ready to merge your changes with everyone else's, you submit a pull request on github. You are asking the person in charge of the master branch to 'pull' your changes from your branch into the master branch.</p>
+
+<p>And that's it.</p>
+<pre>
+1. FORK REPO
+2. GIT CLONE
+[MAKE CHANGES]
+[SAVE NORMALLY]
+3. GIT ADD
+4. GIT COMMIT
+5. GIT PUSH
+[REPEAT 3-4 UNTIL FINISHED]
+[THEN WHEN FINISHED]
+6. PULL REQUEST.
+
+<pre>
+
+<p>Once you've tried it a couple of times it becomes second nature. If it hasn't yet <a href="http://betterexplained.com/articles/aha-moments-when-learning-git/">this</a> might help.</p>
+
+<p>*If you haven't you aren't missing much, the best part of it might just be the tag line: "What If You Had A Universal Remote... That Controlled Your Universe?".</p>
+
+<p>Amazing.</p>
+
+<p>**Notable exceptions include Bitcoins, <a href="http://metro.co.uk/2015/10/31/woman-strips-naked-and-sits-on-rooftop-in-london-for-four-hours-5472666/">modern art</a> and <a href="https://www.google.co.uk/search?q=magnets+how+do+they+work&amp;oq=magnets+how+do+they+work&amp;aqs=chrome.0.69i59j69i60l2.3735j0j7&amp;sourceid=chrome&amp;es_sm=119&amp;ie=UTF-8#q=fucking+magnets+how+do+they+work">magnets, how do they work?!</a></p>

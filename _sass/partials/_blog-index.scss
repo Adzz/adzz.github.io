@@ -1,10 +1,11 @@
 
 .container {
-    margin-bottom: $footer-height--minus;
     min-height: $main-height--minimum;
     padding: 10px;
+    padding-top: 20px;
     margin-bottom: $footer-height;
-    margin-top: $footer-height;
+    margin: $footer-height 20% $footer-height 20%;
+    background-color: $code-bg-color;
 
 
   ul {
