@@ -63,10 +63,17 @@ Bosun
 Co founder/Head of Branding/Labourer
 (Feb 2014 to Present)
 
-  Branded a building company who invested and worked with me in buying and renovating a student house.
-  - Sourced supplies, laboured and handled the application of various licenses and permissions.
-  - Produced scale drawings of proposed work, negotiated with neighbours and attended a deputation at council chambers, where I had to fight for our plans in front of a planning committee.
-  - Required a demanding work ethic and careful time management; time working here overlapped with my time at Makers Academy
+Co founded a property investment company. So far we have our first property successfully renovated and rented and are working towards our second. My responsibilities include:
+
+  - Branding the company and managing social media
+  - Sourcing supplies
+  - Labouring
+  - Handling the application of various licenses and permissions.
+  - Producing scale drawings of proposed work
+  - Negotiating with neighbours and the local planing committee where appropriate.
+
+Recently attended a deputation at council chambers, where I had to fight for our plans in front of a planning committee.
+Required a demanding work ethic and careful time management; time working here overlapped with my time at Makers Academy
 
 <h3 class="subheading">Rockstar Marine - Motor Yacht Blind Date</h3>
 Bosun
