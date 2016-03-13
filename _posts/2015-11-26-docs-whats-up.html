@@ -1,0 +1,23 @@
+---
+layout: post
+title: Doc(s) What's up?
+category: makers
+---
+
+
+<p>Whenever I post on <a href="http://stackoverflow.com/">stackoverflow</a>, the first thing I seem to be told is “did you even try and google it” or “why didn’t you check the <a href="http://ruby-doc.org/">docs</a>? ”.</p>
+<p>Well, for an embarrassingly long time, I didn't really understand what the docs where telling me, or how to approach them. This lead to some very, ahem, character building situations puzzling out how to sort an array for example, only to find (hours later) that there's a method for that.</p>
+<p>Called <a href="http://ruby-doc.org/core-2.2.0/Array.html#method-i-sort">sort</a></p>
+<p>To avoid situations like this here is some knowledge that would have helped me understand it all sooner.</p>
+<h3>Ruby's docs show all of the classes, and then list the methods that are available for those classes.</h3>
+<p>Seems simple now right? For example, you are working on <a href="http://ruby-doc.org/core-2.2.0/Array.html">Arrays</a>, you see this:</p>
+<p><img src="https://36bcab.files.wordpress.com/2015/11/screen-shot-2015-11-18-at-14-25-59.png?w=660" alt="Screen Shot 2015-11-18 at 14.25.59.png"   /></p>
+<p>The list on the left called 'Methods' is a list of all the... well, methods, that you can use on an Array. If it aint there, you can't do it!</p>
+<p>This has helped me a lot. For example I was trying to <code>.scan</code> an array before, it made sense to me that it would be possible in plain english, but I was getting an error. Jump to the Array page, search for scan, and realise it is not an array method. A cheeky bit of googling reveals it's actually a string method. Problem solved; make the array a string or use a different method.</p>
+<p>Similarly, I saw on a stackoverflow answer a method called ".each_with_index" which seemed really handy, so I wanted to know more about it. I jumped to the Array page to search it and....</p>
+<p>it wasn't there!</p>
+<p>It turns out if you scroll down a bit you can see on the left the heading Included Modules:</p>
+<p><img class="alignnone size-full wp-image-368" src="https://36bcab.files.wordpress.com/2015/11/screen-shot-2015-11-18-at-14-31-06.png?w=660" alt="Screen Shot 2015-11-18 at 14.31.06.png"   /></p>
+<p>It turns out all of the methods available in the Enumerable module are available to the Array class! Click the <a href="http://ruby-doc.org/core-2.2.0/Enumerable.html">Enumerable</a> link and search away my friend!</p>
+<p>Knowing this has changed the way I tackle problems. I now start by thinking through the problem generally, I think about what I want to achieve overall and some of the steps that I might take to do this. Then I jump over the docs for the class I would be starting with and I search for keywords in the methods and look for ideas that jump out. For example, if I'm looking to sort an array, I now would definitely look for a method called sort.</p>
+<p>Plenty of times I've been shown a solution to a problem, only to think I didn't even know you could do that in Ruby. Well, that doesn't happen so much now. There might be a really handy method just around the corner so always check the docs, so you know what's up!</p>
