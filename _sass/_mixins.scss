@@ -13,8 +13,6 @@
     }
   }
 
-
-
 @mixin pixelated-btns($bg-color, $font-color, $font-size, $btn-top) {
   border:none;
   outline:none;
@@ -55,4 +53,21 @@
     right: -6px;
     z-index: -2;
   }
+}
+
+
+@mixin wired-link-style ($text-color, $highlight-color) {
+  a { 
+      border-bottom: 3px solid $highlight-color;
+      box-shadow: inset 0 -5px 0 $highlight-color;
+      color: $text-color;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $highlight-color;
+        color: $text-color;
+        text-decoration: none;
+
+      }
+    }
 }

@@ -10,7 +10,7 @@ title: blog
       <li>
       <h3><a class="post-title" href="{{ post.url }}">{{ post.title }}</a></h3>
         <p class='time-date'>{{ post.date | date: '%d %B, %Y' }}</p>
-        <p class='excerpt'>{{ post.excerpt | remove: '<p>' | remove: '</p>' | truncatewords:20 }}</p>
+        <p class='excerpt highlighted-link-styles'>{{ post.excerpt | remove: '<p>' | remove: '</p>' | truncatewords:20 }}</p>
       </li>
       {% endfor %}
     </ul>

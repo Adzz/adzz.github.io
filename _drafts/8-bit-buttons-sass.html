@@ -1,0 +1,51 @@
+---
+layout: post
+title: 8 bit buttons in Sass
+category: code
+---
+
+<p>In designing the landing page for this website I decided to go for a retro 80's hacker feel. Both the color scheme and the <a href="https://www.google.com/fonts/specimen/Press+Start+2P">Press start 2P</a> font lend themselves marvellously to the cause, but it was still missing one thing:</p>
+<h3 class="subheading center-align">8 Bit Buttons</h3>
+<p>I am using <a href="https://jekyllrb.com/">jekyll</a> to make the site, which means I'm using <a href="http://sass-lang.com/">Sass</a> to style it. Or at least trying to. My aim was to see if I could style some pure css 8 bit looking buttons, and wrap it up in a Sass mixin.</p>
+<p>Here is the result:</p>
+<pre><code>@mixin pixelated-btns($bg-color, $font-color, $font-size, $btn-top) {
+  border:none;
+  outline:none;
+  text-align:center;
+  cursor:pointer;
+  position: relative;
+  background: $bg-color;
+  color: $font-color;
+  font-size: $font-size;
+  top: $btn-top;
+  z-index: 1;
+
+  &:active {
+    top: $btn-top + 1vh;
+  }
+
+  &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      background-color: $green-iterm;
+      top: 10px;
+      bottom: 10px;
+      left: -10px;
+      right: -10px;
+      z-index: -1;
+
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: $green-iterm;
+    top: 4px;
+    bottom: 4px;
+    left: -6px;
+    right: -6px;
+    z-index: -2;
+  }
+}</code></pre>

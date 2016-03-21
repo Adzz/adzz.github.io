@@ -24,21 +24,6 @@
     margin: 1% 20% 5% 20%;
     max-width: 75vw;
 
-  .highlighted {
-
-    border-top-right-radius:1px;
-    -moz-border-radius-topright:1px;
-    -webkit-border-top-right-radius:1px;
-
-    -webkit-border-bottom-left-radius: 1px;
-    -moz-border-radius-bottomleft: 1px;
-    border-bottom-left-radius: 1px;
-
-    padding-top: 3px;
-    padding:3px;
-    background: rgba($green-iterm--dark, 0.3);
- }
-
   img, code {
     display: block;
     margin: 0 auto;
