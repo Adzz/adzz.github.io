@@ -76,7 +76,18 @@
     .homepage-btns {
       @include pixelated-btns($green-iterm, $black, 1em, 38vh);
       margin: 20px;
-      height: 5%;
+      height: 3.5%;
+    }
+  }
+
+  @include media-query($homepage-bp--3){
+    .heading {
+      font-size:1.7em;
+    }
+    .homepage-btns {
+      @include pixelated-btns($green-iterm, $black, 1em, 38vh);
+      margin: 20px;
+      height: 3.5%;
     }
   }
 }
