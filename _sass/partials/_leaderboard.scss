@@ -16,13 +16,17 @@
     top: 6%;
     margin-bottom: 5%;
     -webkit-animation: flashing-text 1s step-end infinite;
+    -moz-animation: flashing-text 1s step-end infinite;
+    animation: flashing-text 1s step-end infinite;
+    -o-animation: flashing-text 1s step-end infinite;
   }
 
   ul {
     text-align: left;
-    margin: auto;
+    margin: 0 auto;
     padding-top: 3%;
     max-width: fit-content;
+    width:50%;
   }
 
   li {
