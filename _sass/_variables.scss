@@ -45,14 +45,20 @@ $highlighted-text-bg-color: $green-iterm--dark;
 $code-bg-color      : #E8E9ED;
 
 // Media Query Breakpints:
-$content-width:    800px;
-$homepage-bp--1:   916px;
-$homepage-bp--2:   680px;
-$homepage-bp--3:   573px;
-$homepage-bp--4:   468px;
-$homepage-bp--5:   400px;
-$on-palm:          600px;
-$on-laptop:        800px;
+  // Jekyll provided:
+  $on-palm:          600px;
+  $on-laptop:        800px;
+  $content-width:    800px;
+  // Homepage:
+  $homepage-bp--1:   916px;
+  $homepage-bp--2:   680px;
+  $homepage-bp--3:   573px;
+  $homepage-bp--4:   468px;
+  $homepage-bp--5:   400px;
+  // Blog Index page:
+  $blogindex-bp--1:  1200px;
+  $blogindex-bp--2:  700px;
+
 
 //Layout
   // Footer

@@ -22,6 +22,14 @@
     letter-spacing: -1px;
   }
 
+  @include media-query($blogindex-bp--1){
+    margin: $footer-height 10% $footer-height 10%;
+  }
+
+  @include media-query($blogindex-bp--2){
+    margin: $footer-height 0% $footer-height 0%;
+    padding-right: 40px;
+  }
 }
 
 
