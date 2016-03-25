@@ -44,9 +44,11 @@ $background-color   : $white;
 $highlighted-text-bg-color: $green-iterm--dark;
 $code-bg-color      : #E8E9ED;
 
-// Width of the content area
+// Media Query Breakpints:
 $content-width:    800px;
-
+$homepage-bp--1:   916px;
+$homepage-bp--2:   680px;
+$homepage-bp--3:   573px;
 $on-palm:          600px;
 $on-laptop:        800px;
 

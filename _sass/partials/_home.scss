@@ -30,12 +30,53 @@
       background: $black; /* same as background */
       border-left: .1em solid $white;
 
+      -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
 
       -webkit-animation: typing 4s steps(14, end), /* # of steps = # of characters */
       blink-caret 1s step-end infinite;
+
       -moz-animation: typing 4s steps(14, end), /* # of steps = # of characters */
       blink-caret 1s step-end infinite;
+
+      -o-animation: typing 4s steps(14, end), /* # of steps = # of characters */
+      blink-caret 1s step-end infinite;
+
+      animation: typing 4s steps(14, end), /* # of steps = # of characters */
+      blink-caret 1s step-end infinite;
+  }
+
+  @include media-query($homepage-bp--1){
+    .heading {
+      font-size:3em;
+    }
+    .homepage-btns {
+      @include pixelated-btns($green-iterm, $black, 1.5em, 43vh);
+      margin: 20px;
+      height: 5%;
+    }
+  }
+
+  @include media-query($homepage-bp--2){
+    .heading {
+      font-size:2.5em;
+    }
+    .homepage-btns {
+      @include pixelated-btns($green-iterm, $black, 1.3em, 38vh);
+      margin: 20px;
+      height: 5%;
+    }
+  }
+
+  @include media-query($homepage-bp--3){
+    .heading {
+      font-size:2em;
+    }
+    .homepage-btns {
+      @include pixelated-btns($green-iterm, $black, 1em, 38vh);
+      margin: 20px;
+      height: 5%;
+    }
   }
 }
