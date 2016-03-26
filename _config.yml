@@ -15,6 +15,9 @@ url: "http://yourdomain.com" # the base hostname & protocol for your site
 twitter_username: ItizAdz
 github_username:  Adzz
 
+# Highlighting
+highlighter: rouge
+
 # Build settings
 markdown: kramdown
 sass:
