@@ -38,4 +38,23 @@
   a {
     font-size: 2em;
   }
+
+  @include media-query($homepage-bp--5){
+    h1{
+      font-size:2em;
+    }
+    a {
+      font-size:1em;
+    }
+    ul{
+      padding-top:13%;
+      width:100%
+    }
+  }
+  @include media-query($blogindex-bp--2){
+    ul{
+      padding-top:13%;
+      width:100%
+    }
+  }
 }
