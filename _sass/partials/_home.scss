@@ -1,8 +1,12 @@
 
-.homepage-btns {
-  @include pixelated-btns($green-iterm, $black, 2em, 43vh);
+.eightbit-btns {
+  @include pixelated-btns($green-iterm, $black, 2em);
   margin: 20px;
   height: 5vh;
+  top:43vh;
+   &:active {
+    top: 44vh;
+  }
 }
 
 .main {
@@ -52,10 +56,14 @@
     .heading {
       font-size:3em;
     }
-    .homepage-btns {
-      @include pixelated-btns($green-iterm, $black, 1.5em, 43vh);
+    .eightbit-btns  {
+      @include pixelated-btns($green-iterm, $black, 1.5em);
       margin: 20px;
       height: 5%;
+      top:43vh;
+      &:active {
+        top: 44vh;
+      }
     }
   }
 
@@ -63,10 +71,14 @@
     .heading {
       font-size:2.5em;
     }
-    .homepage-btns {
-      @include pixelated-btns($green-iterm, $black, 1.4em, 38vh);
+    .eightbit-btns  {
+      @include pixelated-btns($green-iterm, $black, 1.4em);
       margin: 20px 100px;
       height: 4%;
+      top:38vh;
+      &:active {
+        top: 39vh;
+      }
     }
   }
 
@@ -74,10 +86,14 @@
     .heading {
       font-size:2em;
     }
-    .homepage-btns {
-      @include pixelated-btns($green-iterm, $black, 1.4em, 38vh);
+    .eightbit-btns  {
+      @include pixelated-btns($green-iterm, $black, 1.4em);
       margin: 15px 100px;
       height: 4%;
+      top:38vh;
+      &:active {
+        top: 39vh;
+      }
     }
   }
 
@@ -85,10 +101,14 @@
     .heading {
       font-size:1.7em;
     }
-    .homepage-btns {
-      @include pixelated-btns($green-iterm, $black, 1.1em, 36vh);
+    .eightbit-btns  {
+      @include pixelated-btns($green-iterm, $black, 1.1em);
       margin: 15px 100px;
       height: 4%;
+      top:36vh;
+      &:active {
+        top: 37vh;
+      }
     }
   }
 
@@ -96,9 +116,13 @@
     .heading {
       font-size:1.4em;
     }
-    .homepage-btns {
-      @include pixelated-btns($green-iterm, $black, 1em, 36vh);
+    .eightbit-btns  {
+      @include pixelated-btns($green-iterm, $black, 1em);
       margin: 15px 100px;
+      top:36vh;
+      &:active {
+        top: 37vh;
+      }
     }
   }
 }

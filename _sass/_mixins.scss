@@ -1,6 +1,6 @@
 
 
-@mixin pixelated-btns($bg-color, $font-color, $font-size, $btn-top) {
+@mixin pixelated-btns($bg-color, $font-color, $font-size) {
   border:none;
   outline:none;
   text-align:center;
@@ -9,12 +9,7 @@
   background: $bg-color;
   color: $font-color;
   font-size: $font-size;
-  top: $btn-top;
   z-index: 1;
-
-  &:active {
-    top: $btn-top + 1vh;
-  }
 
   &:before {
       content: "";

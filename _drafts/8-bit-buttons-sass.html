@@ -4,12 +4,26 @@ title: 8 bit buttons in Sass
 category: code
 ---
 
-<p>One of the best things about coding is how easy it is to make your life hard. 
+<p>One of the best things about coding is how easy it is to make your life hard. If you wanted 8 bit style buttons for example, you <em>could</em> use a png inside a &#60button&#62 tag and away you go! Alternatively, you could decide to try and make a button in pure CSS, and write a Sass mixin for it.
 
- Both the color scheme and the <a href="https://www.google.com/fonts/specimen/Press+Start+2P">Press start 2P</a> font lend themselves marvellously to the cause, but it was still missing one thing...</p>
-<h3 class="subheading center-align">8 Bit Buttons</h3>
-<p>I am using <a href="https://jekyllrb.com/">jekyll</a> to make the site, which means I'm using <a href="http://sass-lang.com/">Sass</a> to style it. Or at least trying to. My aim was to see if I could style some pure css 8 bit looking buttons, and wrap it up in a Sass mixin.</p>
-<p>Here is the result:</p>
+<p>That's what I did.</p>
+
+<button class="eightbit-btns--post">8 Bit Buttons!</button>
+
+
+<p>This was actually way more challenging than I first anticipated. For starters, there wasn't someone I could blatantly copy. The closest thing I could find was <a href="http://codepen.io/YoannM/pen/yyExEO">this codepen</a>, which was a great starting point. Instead of using border box or any kind of border style, they used some clever postitioning with the psuedo elements ::before and ::after.</p>
+
+<p>The basic idea is this. You have a button shaped like so:</p>
+<div class="btn-demo"></div>
+<p>Add a ::before element, that's slightly shorter but wider, and position it over the top</p>
+<div class="btn-demo--before"></div>
+<p>Then add an ::after element that's slightly thinner but taller and position <em>that</em> over both...</p>
+<div class="btn-demo--after"></div>
+<p>Now if the background colour of each element is the same....</p>
+<div class="btn-demo--coloredin">Tada!</div>
+<p>One beautiful pixelated button</p>
+<p>The next step was to wrap this up in a Sass mixin. I am new to Sass, so this is probably horrible but my aim was to try and make a mixin that was as re-usable and flexible as possible, but which also would remove the need for repition when I came to defining the button.</p>
+<p>This was the first attempt:</p>
 
 {% highlight sass linenos %}
   @mixin pixelated-btns($bg-color, $font-color, $font-size, $btn-top) {
@@ -55,5 +69,73 @@ category: code
 
 } {% endhighlight %}
 
+
+<p>And to use it...</p>
+
+{% highlight sass linenos %}
+.eightbit-btns {
+  @include pixelated-btns($green-iterm, $black, 2em, 43vh);
+  margin: 20px;
+  height: 5vh;
+}
+{% endhighlight %}
+
+<p>This gets that nice clicking effect, where the button shifts down a few pixels when active. I felt like this effect was so integral to the style of the button that it should be built in to the mixin. The downside is that it can be hard to know the exact top postion when you come to apply the mixin. The alternative is to remove it out like so:</p>
+
+{% highlight sass linenos %}
+@mixin pixelated-btns($bg-color, $font-color, $font-size) {
+  border:none;
+  outline:none;
+  text-align:center;
+  cursor:pointer;
+  position: relative;
+  background: $bg-color;
+  color: $font-color;
+  font-size: $font-size;
+  z-index: 1;
+
+  &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      background-color: $green-iterm;
+      top: 10px;
+      bottom: 10px;
+      left: -10px;
+      right: -10px;
+      z-index: -1;
+
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: $green-iterm;
+    top: 4px;
+    bottom: 4px;
+    left: -6px;
+    right: -6px;
+    z-index: -2;
+  }
+}
+{% endhighlight %}
+
+<p>This means you would call it like so:</p>
+
+{% highlight sass linenos %}
+.eightbit-btns {
+  @include pixelated-btns($green-iterm, $black, 2em);
+  margin: 20px;
+  height: 5vh;
+  top:43vh;
+   &:active {
+    top: 44vh;
+  }
+}
+{% endhighlight %}
+
+<p>This is good, but I found myself repeating the &:active content a lot. I think it comes down to what works for you. Either way I hope this helps someone.</p>
+<p>Feel free to <a href="https://twitter.com/itizadz">tweet me</a> any comments or improvements</p>
 
 
