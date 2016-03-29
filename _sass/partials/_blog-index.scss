@@ -19,7 +19,7 @@
   }
 
   .excerpt {
-    letter-spacing: -1px;
+    font-size: $medium-font-size;
   }
 
   @include media-query($blogindex-bp--1){
