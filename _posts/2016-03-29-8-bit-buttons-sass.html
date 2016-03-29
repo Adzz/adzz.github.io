@@ -15,14 +15,14 @@ category: code
 
 <p>The basic idea is this. You have a button shaped like so:</p>
 <div class="btn-demo"></div>
-<p>Add a ::before element, that's slightly shorter but wider, and position it over the top</p>
+<p>Add a ::before element, that's slightly shorter but wider, and position it over the top:</p>
 <div class="btn-demo--before"></div>
 <p>Then add an ::after element that's slightly thinner but taller and position <em>that</em> over both...</p>
 <div class="btn-demo--after"></div>
 <p>Now if the background colour of each element is the same....</p>
 <div class="btn-demo--coloredin">Tada!</div>
-<p>One beautiful pixelated button</p>
-<p>The next step was to wrap this up in a Sass mixin. I am new to Sass, so this is probably horrible but my aim was to try and make a mixin that was as re-usable and flexible as possible, but which also would remove the need for repition when I came to defining the button.</p>
+<p>One beautiful pixelated button.</p>
+<p>The next step was to wrap this up in a Sass mixin. I am new to Sass, so this is probably horrible but my aim was to try and make a mixin that was as re-usable and flexible as possible, but which also would remove the need for repetition when I came to defining the button.</p>
 <p>This was the first attempt:</p>
 
 {% highlight sass linenos %}
@@ -75,8 +75,7 @@ category: code
 {% highlight sass linenos %}
 .eightbit-btns {
   @include pixelated-btns($green-iterm, $black, 2em, 43vh);
-  margin: 20px;
-  height: 5vh;
+  // more styles...
 }
 {% endhighlight %}
 
@@ -126,8 +125,7 @@ category: code
 {% highlight sass linenos %}
 .eightbit-btns {
   @include pixelated-btns($green-iterm, $black, 2em);
-  margin: 20px;
-  height: 5vh;
+  //more styles...
   top:43vh;
    &:active {
     top: 44vh;
