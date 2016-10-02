@@ -1,0 +1,79 @@
+---
+layout: post
+title: Currying
+category: code
+---
+
+<h1>Enemy of the State</h1>
+
+<p>This is the start of a series of blog posts about functional programming. There are already a deluge of blog posts on functional programming, most of them written by people much smarter than me, who know the topic much more thouroughly and who can probably express their ideas much more succinctly. You might think it's a terrible idea for me to try and improve on anything that's already been said. And to that I would say I agree with you completely. </p>
+
+<p></p>
+
+<p>So what is Currying? Currying is a way to partially apply a function, by taking a function that takes muliple arguments, and splitting them into nested functions which each take one argument each.</p>
+
+<p>It can be a way to use functions to make other functions.
+
+In javascript:
+
+{% highlight javascript  %}
+  let add = function(x){
+    return function(y){
+      return x + y
+    };
+  };
+{% endhighlight %}
+
+Would allow us to call it like so:
+
+  {% highlight javascript  %}
+  let addTen = add(10);
+  {% endhighlight %}
+
+When this runs the 10 is passed in as x;
+
+  {% highlight javascript  %}
+  let add = function(10){
+  return function(y){
+  return 10 + y
+  };
+  };
+  {% endhighlight %}
+
+which means we are returned this function:
+
+  {% highlight javascript  %}
+  function(y) { 10 + y };
+  {% endhighlight %}
+
+So when you call
+
+  {% highlight javascript  %}
+  addTen();
+  {% endhighlight %}
+
+you are really calling:
+
+  {% highlight javascript  %}
+  function(y) { 10 + y };
+  {% endhighlight %}
+
+So if you do this:
+
+  {% highlight javascript  %}
+  addTen(4)
+  {% endhighlight %}
+
+it's the same as:
+
+  {% highlight javascript  %}
+  function(4) { 10 + 4} // 14
+  {% endhighlight %}
+
+So our addTen() always adds ten to whatever we pass in. We can make similar functions in the same way:
+
+  {% highlight javascript  %}
+  let addTwo = add(2)       // addTwo(); will add two to whatever you pass in
+  let addSeventy = add(70)  // ... and so on...
+{% endhighlight %}
+</p>
