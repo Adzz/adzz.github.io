@@ -1,14 +1,12 @@
 ---
 layout: post
-title: Currying
+title: Enemy of the State - Currying
 category: code
 ---
 
-<h1>Enemy of the State</h1>
-
-<p>This is the start of a series of blog posts about functional programming. There are already a deluge of blog posts on functional programming, most of them written by people much smarter than me, who know the topic much more thouroughly and who can probably express their ideas much more succinctly. You might think it's a terrible idea for me to try and improve on anything that's already been said. And to that I would say I agree with you completely. </p>
-
-<p></p>
+<p>This is the start of a series of blog posts about functional programming. The rough approach will be to break FP down into its smallest composite parts and examine each in turn.</p>
+<p>
+There are already a deluge of blog posts on functional programming, most of them written by people much smarter than me, who know the topic much more thouroughly and who can probably express their ideas much more succinctly. You might think it's a terrible idea for me to try and improve on anything that's already been said. And to that I would say I agree with you completely. </p>
 
 <p>So what is Currying? Currying is a way to partially apply a function, by taking a function that takes muliple arguments, and splitting them into nested functions which each take one argument each.</p>
 
@@ -34,9 +32,9 @@ When this runs the 10 is passed in as x;
 
   {% highlight javascript  %}
   let add = function(10){
-  return function(y){
-  return 10 + y
-  };
+    return function(y){
+      return 10 + y
+    };
   };
   {% endhighlight %}
 
