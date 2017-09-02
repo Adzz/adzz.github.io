@@ -1,0 +1,110 @@
+---
+layout: post
+title: All the tests you cannot see
+category: makers
+comments: true
+---
+
+
+<p>
+  I’ve been thinking about testing lately and recently came across a situation at work which served to illustrate brilliantly something I’ve been trying to articulate.
+</p>
+
+<p>
+  I work for an e-commerce website. As part of the backend we have batch files. These provide a way for non-technical staff to be able to add, update and remove things from the DB safely. For example, they might add information that links a product to a particular category.
+</p>
+
+<p>
+  I recently began implementing a way for Customer Service Agents to be able to add fraudulent email addresses to a table, such that orders made with those email addresses were marked as ‘risky’.
+</p>
+
+<p>
+  I wrote this something like this:
+</p>
+
+{% highlight ruby %}
+  def process
+    RiskyEmail.find_or_create_by!(email: contents)
+  end
+{% endhighlight %}
+
+<p>where <code>contents</code> was the contents of the batchfile.</p>
+
+<p>Then I thought, wait I need a test. So I wrote:</p>
+
+{% highlight ruby %}
+  it "adds an email to the risky_emails table" do
+    expect { validate_and_process(batchfile) }.to change { RiskyEmail.count}.from(0).to(1) )
+  end
+{% endhighlight %}
+
+<p>Job done!</p>
+
+
+<p>You might have already spotted my mistake, but instead of pointing it out yet let’s imagine I had written the test first. I would have put:</p>
+
+{% highlight ruby %}
+  it "adds an email to the risky_emails table" do
+    expect { validate_and_process(batchfile) }.to change { RiskyEmail.count}.from(0).to(1) )
+  end
+{% endhighlight %}
+
+
+<p>Then the code I would have written to pass it would have been something like:</p>
+
+
+{% highlight ruby %}
+  def process
+    RiskyEmail.find_or_create_by!(email: "blahhh@blahh.com")
+  end
+{% endhighlight %}
+
+
+<p>Wait, now I need a new test. It’s obvious that the production code isn’t going to get the behaviour I needed if every time I process the batch file it adds the email <code>“blahhh@blahh.com”</code>. Worryingly this means that there is some kind of case my original test isn’t covering. What could that be?</p>
+
+
+<p>My next test would have looked something like:</p>
+
+
+{% highlight ruby %}
+  it "inserts the correct data" do
+    create(:batchfile, contents: "risky@business.com")
+    validate_and_process(batchfile)
+    expect(RiskyEmail.first.email).to eq "risky@bussiness.com"
+  end
+{% endhighlight %}
+
+
+<p>
+  The test that was missing was checking that the batchfile saved the data that we wanted. As it turned out, this was an important part to miss. Because of how the batchfiles were implemented, when I wrote:
+</p>
+
+{% highlight ruby %}
+  def process
+    RiskyEmail.find_or_create_by!(email: contents)
+  end
+{% endhighlight %}
+
+<p>the <code>contents</code> was actually returning <code>[“risky@business.com”]</code></p>
+
+
+<p>Had I written the test first, my test would have failed and said umm buddy, you told us you wanted <code>risky@business.com</code> but the code gave us <code>[“risky@business.com”]</code> I could have said “Oh yes” and marvelled at my own stupidity in silence. I would have put:</p>
+
+{% highlight ruby %}
+  def process
+    RiskyEmail.find_or_create_by!(email: contents.first)
+  end
+{% endhighlight %}
+
+<p>
+  there and then, instead of having to hastily add a new PR.
+</p>
+
+<p>That would have been nice.</p>
+
+<p>
+  If you write your code first and then test it, you force yourself into having to imagine what kind of problems you will encounter.
+</p>
+<p>
+  If you write your test first, you no longer have to imagine what situations you might encounter because you will simply encounter them. If you are disciplined about only taking the smallest step needed to make your test pass, then you will expose ways your code could fail that mightn't have been obvious otherwise.
+</p>
