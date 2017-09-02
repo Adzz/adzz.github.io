@@ -2,7 +2,7 @@
 .eightbit-btns {
   @include pixelated-btns($green-iterm, $black, 2em);
   margin: 20px;
-  height: 5vh;
+  height: 50px;
   top:43vh;
    &:active {
     top: 44vh;
