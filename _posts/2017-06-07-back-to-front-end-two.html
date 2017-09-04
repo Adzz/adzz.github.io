@@ -1,0 +1,108 @@
+---
+layout: post
+title: Back to Front(end) II
+category: code
+comments: true
+---
+
+<figure>
+  <img src="https://cdn-images-1.medium.com/max/1600/1*46F-Il89-_FkUuUEZd3vqg.png">
+  <figcaption>Javacript and Me, 2017</figcaption>
+</figure>
+
+<p>
+  In <a href="https://adzz.github.io/code/2017/06/08/back-to-front-end">Part 1</a>, I set up a new react project with tests, linting and redux. Apparently that wasn’t enough because ‘the app has to actually do stuff’. Well, excuseee me Mr Product Manager.
+</p>
+
+<p>
+  Since single page apps aren’t single pages apps anymore, the next thing we needed was routing. I think there’s only react router (no I didn’t check), I’ll just read up on that.
+</p>
+
+<p>
+  Oh, it looks like I just spent half a day reading about the old react router. Turns our theres version 3. Still, it’s probably mostly similar…
+</p>
+
+<p>
+  Oh, looks like I just spent half a day reading about an old react router. Turns our there’s a version 4. Still, it’s probably nearly the same… I wonder how elm handles routing.
+</p>
+
+<p>
+  If you can sift through the blog posts and stack overflow questions to ensure you’re reading about the correct version, it actually makes a lot of sense. I wonder how we have to configure the server when we deploy this thing… I’ll let dev-ops worry about that.
+</p>
+
+<p>
+  By this point it has occurred to me that there’s a small obligation for this thing to actually look nice, and that furthermore, I am in not a designer. Not at all. As such, the hunt began for something like bootstrap** that looked not like bootstrap. And lo, the universe provided <a href="http://www.material-ui.com/#/">Material UI</a>, and I saw that it was good.
+</p>
+
+<p>
+  As mentioned in part one this project is the front end to a bunch of microservices, which means we’re about to make plenty of API calls.
+</p>
+
+<p>
+  I initially assumed that axios calls in componentDidMount, would be fine. Then I <a href="https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559">read this</a>, and decided <a href="https://github.com/gaearon/redux-thunk">redux-thunk</a> would be good choice. Then I <a href="http://blog.jakegardner.me/redux-thunk-vs-saga/">read this</a> and decided <a href="https://github.com/redux-saga/redux-saga">redux-saga</a> would be a good choice. Then I <a href="https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367">read this</a> (written by the creator of redux) and decided to have a lie down.
+</p>
+
+<p>
+  Thunks can become a little difficult to test. I figured I could avoid that headache, preempt it even, by learning sagas. Sort of like the way you might avoid ever stubbing your toe by cutting off your foot. Or like when you strategically avoid the hangover by continuing to drink — if I never stop reading about these libraries, no one can make me use them!
+</p>
+
+<p>
+  I’m exaggerating of course ES6 generators weren’t thattt hard. In fact the hardest part was convincing my co-workers that all this really was worth it. “All that just for easier tests?!” (Um, what do you mean just?). Just wait until I tell them we should scrap sagas anyway and re-write*** the whole thing with <a href="http://graphql.org/learn/">graphQL!</a> And none of that <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> nonsense, what is this 2016?!
+</p>
+
+<p>
+  In the end the team switched to using <a href="https://github.com/marmelab/admin-on-rest">Admin-on-rest</a>, a library that implements all those things I learnt, in such a way that you don’t really need to learn them. Wonderful. So glad I learnt them.
+</p>
+
+<h2>
+  The moral
+</h2>
+
+<p>
+  There’s two morals to this tale. Those more experienced amongst you will note that perhaps I was premature in including all these technologies. That I shouldn’t have been making choices upfront, but should have started the app and refactored into the libraries that made sense.
+</p>
+
+<p>
+  I completely agree. The truth is each library has it’s tradeoffs. That means, if you reach the pain point the library was birthed to solve, you already know that the library’s tradeoffs will probably be a net win. You don’t have to take it on faith that thunks become hard to test, because you know it already.
+</p>
+
+<p>
+  That’s exactly why more experienced devs can move quickly; they already know lots of the pros and cons of different approaches. But here’s my point, they didn’t just magically learn that. At some point that investment is needed.
+</p>
+
+<p>
+  From <a href="https://twitter.com/dhh?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">DHH</a> in a recent <a href="https://www.quora.com/What-makes-Rails-a-framework-worth-learning-in-2017">quora question</a> on why Rails is still worth learning in 2017:
+</p>
+
+<blockquote>
+  “Back then the complexity merchant of choice was J2EE, but the complaints are uncannily similar to those levelled against JavaScript today. That people spent hours, if not days, just setting up the skeletons. The basic build configurations. Assembling and cherry-picking from lots of little libraries and frameworks to put together their own snowflake house variety.”
+</blockquote>
+
+<p>
+  Oof. Right in the feels. He goes on to say:
+</p>
+
+<blockquote>
+  It’s somewhat surprising to me that despite the astounding success of Rails, that there haven’t been more competition for this proposition
+</blockquote>
+
+<p>
+  I couldn’t agree more. Configuration comes at a cost. That cost is complexity. Configuration kills productivity in the short term - that was the insight from rails. It may often pay off in the long run (that was the insight from vim), but to do so doesn’t mean we have to sacrifice short term gains of convention over configuration. The two aren’t mutually exclusive. Even Vim has <a href="https://github.com/tpope/vim-sensible">sensible vim</a>.
+</p>
+
+<p>
+  Or as Alfred Whitehead said
+</p>
+
+<blockquote>
+  It is a profoundly erroneous truism… that we should cultivate the habit of thinking of what we are doing. The precise opposite is the case. Civilization advances by extending the number of important operations which we can perform without thinking about them
+</blockquote>
+
+<p>
+  Javascript, please, don’t make me think.
+</p>
+
+
+<sub>**in fairness I would have totally used bootstrap, but react bootstrap hadn’t made a version 1.0 yet.</sub>
+<sub>***once we’ve actually written it of course.</sub>
+

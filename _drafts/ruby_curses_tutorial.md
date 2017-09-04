@@ -41,3 +41,4 @@ Learning elixir
 The difference between code telling us what it does
 and telling us how it does it. Sometimes we want to know
 one and sometimes the other. Explore with an example
+

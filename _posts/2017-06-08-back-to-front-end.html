@@ -1,0 +1,137 @@
+---
+layout: post
+title: Back to Front(end)
+category: code
+comments: true
+---
+
+<p>
+  This is the story of my recent foray back into the world of front end web development. I have been working almost exclusively as a Ruby developer for a little while now, but was recently offered the chance to head up a new project at work: implementing a frontend to a bunch of micro services that form our internal tools. In javascript.
+</p>
+
+<p>
+  I love Ruby, but I also love learning new things. And challenging myself… And self harm, apparently.
+</p>
+
+<p>
+  It will be fun I thought. I’ve made websites I thought. I know javascript, I thought.
+</p>
+
+<p>
+  You see it turns out the first thing I had to do was learn javascript. ES6 to be specific. With <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Spread_operator">just a little bit of ES7</a>. Or is that ES2015? Even though it’s 2017.
+</p>
+
+<p>
+  Either way javascript isn’t javascript anymore. Except to run it in most browsers it has to be javascript again, so looks like I’ll need <a href="https://babeljs.io/">Babel</a>. And probably <a href="https://webpack.github.io/">Webpack</a>.
+</p>
+
+<p>
+  I’ll just read up on them.
+</p>
+
+<figure>
+  <img src="https://cdn-images-1.medium.com/max/2000/1*KTJ_NKK6MNGYN7ZTR9OInw.png">
+  <figcaption>Yes, it’s as scary as it looks.</figcaption>
+</figure>
+
+<p>
+  It looks like <a href="https://facebook.github.io/react/">React</a> is a good choice for our use case, and there will be some relatively complex state management so we’ll probably use <a href="http://redux.js.org/docs/introduction/">Redux</a>. I’ll just learn about those.
+</p>
+
+<p>
+  I’m <a href="https://facebook.github.io/react/docs/thinking-in-react.html">three</a> <a href="https://facebook.github.io/react/docs/composition-vs-inheritance.html">articles</a> <a href="https://facebook.github.io/react/docs/introducing-jsx.html">deep</a>, I think I know what JSX is and I am thoroughly convinced that html in javascript is actually fine. I’m even coming round to <a href="https://speakerdeck.com/vjeux/react-css-in-js">inline</a> <a href="https://speakerdeck.com/michelebertoli/unlearn-everything">styles</a>. Probably ready to give this baby a whirl!**
+</p>
+
+<p>
+  I’ll just have a look at the react docs and see how we go about starting a react app…
+</p>
+
+<p>
+  Nope! Nope. Absolutely nope. I’m using <a href="https://github.com/facebookincubator/create-react-app">create-react-app</a>. In fact, their README is a bit good, wish I’d seen that earlier.
+</p>
+
+<p>
+  I’m not going to be the only developer on this (I hope) and so when it’s my turn to cry in the corner, I’d like the developer that follows to have some conventions to, um, follow. Which means Linting!
+</p>
+
+<p>
+  Looks like a different app we have used SUIT CSS naming conventions which worked out marvellously. Let me just brush up on what that is.
+</p>
+
+<p>
+  Luckily there weren’t four thousand choices, so <a href="https://github.com/stylelint/stylelint">stylelint</a> for CSS and <a href="http://eslint.org/">eslint</a> for javascript will do me nicely. You can even steal <a href="https://www.npmjs.com/package/eslint-config-airbnb">Air Bnbs configuration!</a> I made a couple of npm scripts to kick off linting, and ran them on the scaffolded app to ensure the settings were all good.
+</p>
+
+<p>
+  Oh. It wants me to call js files jsx. Seems reasonable.
+</p>
+
+<p>
+  Wait now the react server can’t find the js file. Because we changed it to jsx…
+</p>
+
+<p>
+  Okay we got there. One WORKING app, with react, that compiles AND lints our css and javascript. Only a small part of me is wishing I learnt Elm.
+</p>
+
+<p>
+  Except it’s not working exactly, because we haven’t actually written any code yet. I’m sure my product manager will understand.
+</p>
+
+<p>
+  Okay, code. So, tests? I just need to write a test! Should be easy enough….
+</p>
+
+<p>
+  …
+</p>
+
+<p>
+  Holy functional monads. My kingdom for RSpec!
+</p>
+
+<p>
+  To test in javascript you need a test runner, an assertion library, a mocking library, (instead of just rspec), a browser environment (this is all just for unit tests) AND a test framework. Plus some extra if you want code coverage.
+</p>
+
+<p>
+  That’s fine, there can’t be that many choices and anyway I’m sure the community has come to some kind of consensus. We only have to choose from:
+</p>
+
+<ul>
+  <li><a href="https://karma-runner.github.io/1.0/index.html">Karma</a></li>
+  <li><a href="https://jasmine.github.io/">Jasmine</a></li>
+  <li><a href="https://facebook.github.io/jest/">Jest</a></li>
+  <li><a href="https://github.com/tmpvar/jsdom">JSDOM</a></li>
+  <li><a href="http://chaijs.com/">Chai</a></li>
+  <li><a href="http://nightwatchjs.org/">Nightwatch</a></li>
+  <li><a href="http://phantomjs.org/">Phantomjs</a></li>
+  <li><a href="http://sinonjs.org/">Sinon</a></li>
+  <li><a href="https://github.com/testdouble/testdouble.js">testdouble</a></li>
+  <li><a href="https://github.com/substack/tape">Tape</a></li>
+  <li><a href="https://github.com/avajs/ava">Ava</a></li>
+  <li><a href="https://gotwarlost.github.io/istanbul/">Istanbul</a></li>
+  <li><a href="https://mochajs.org/">Mocha</a></li>
+</ul>
+
+<p>
+  Air Bnb also wrote <a href="https://github.com/airbnb/enzyme">enzyme</a> because you need that too. I love those people.
+</p>
+
+<p>
+  I carefully selected Jest (because it came with create react app) and I’ll worry about E2E tests later.
+</p>
+
+<p>
+  So now we have it. A passing smoke test, with a component that I managed to apply linted styles to!
+</p>
+
+<p>
+  Just need the rest of the functionality now….
+</p>
+
+<a href="https://adzz.github.io/code/2017-06-07-back-to-front-end-two">Part 2 to here</a>
+
+<br>
+<br>
+<sub>**disclaimer: please don’t whirl babies</sub>
