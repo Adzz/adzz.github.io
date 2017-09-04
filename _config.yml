@@ -9,7 +9,7 @@
 title: Adzz
 email: lancaster28@hotmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Personal Blog of Adam Lancaster, aspiring software craftsman.
+  Will code for money.
 baseurl: /
 # url: "http://yourdomain.com" # the base hostname & protocol for your site
 twitter_username: ItizAdz
@@ -31,5 +31,4 @@ github:
   repo:           https://github.com/adzz
 # XML feed
 name: Adzz
-description: My insights into the world of code
 url: adzz.github.io
