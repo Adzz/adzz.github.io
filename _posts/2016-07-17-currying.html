@@ -1,80 +1,221 @@
 ---
 layout: post
-title: Enemy of the State - Currying
+title: Currying
 category: code
 comments: true
 ---
 
-<p>So what is Currying? Currying is a way to partially apply a function, by taking a function that takes muliple arguments, and splitting them into nested functions which each take one argument each.</p>
+<p>Currying. Another in a long list of words that anyone outside of programming hears and just assumes you are making up.</p>
 
-<p>It can be a way to use functions to make other functions.
+<p>Currying is a way to partially apply a function. What the hell does that mean?</p>
 
-In javascript:
+<p>It turns a function that takes two arguments into a function that: takes-one-argument-and-returns-a-function-which-takes-the-other-argument.</p>
+
+<p>Wut.</p>
+
+<p>Observe...</p>
+
+<p>In javascript, instead of having this:
 
 {% highlight javascript  %}
-  let add = function(x){
-    return function(y){
-      return x + y
-    };
-  };
+let add = function(x, y) {
+  return x + y
+};
 {% endhighlight %}
 
-Would allow us to call it like so:
+we could do this:
 
-  {% highlight javascript  %}
-  let addTen = add(10);
-  {% endhighlight %}
-
-When this runs the 10 is passed in as x;
-
-  {% highlight javascript  %}
-  let add = function(10){
-    return function(y){
-      return 10 + y
-    };
+{% highlight javascript  %}
+let add = function(x){
+  return function(y){
+    return x + y
   };
-  {% endhighlight %}
+};
+{% endhighlight %}
+
+We could then call it like so:
+
+{% highlight javascript  %}
+let addTen = add(10);
+{% endhighlight %}
+
+When we do this the <code>10</code> is passed in as <code>x</code>:
+
+{% highlight javascript  %}
+let add = function(10){
+  return function(y){
+    return 10 + y
+  };
+};
+{% endhighlight %}
 
 which means we are returned this function:
 
   {% highlight javascript  %}
-  function(y) { 10 + y };
+function(y) { 10 + y };
   {% endhighlight %}
 
-So when you call
+So when you call:
 
   {% highlight javascript  %}
-  addTen();
+addTen();
   {% endhighlight %}
 
 you are really calling:
 
   {% highlight javascript  %}
-  function(y) { 10 + y };
+function(y) { 10 + y };
   {% endhighlight %}
 
-So if you do this:
+Which means if you do this:
 
   {% highlight javascript  %}
-  addTen(4)
+addTen(4)
   {% endhighlight %}
 
 it's the same as:
 
   {% highlight javascript  %}
-  function(4) { 10 + 4} // 14
+function(4) { 10 + 4} // 14
   {% endhighlight %}
 
-So our addTen() always adds ten to whatever we pass in. We can make similar functions in the same way:
+So our <code>addTen()</code> function always adds ten to whatever we pass in. We can make similar functions in the same way:
 
   {% highlight javascript  %}
-  let addTwo = add(2)       // addTwo(); will add two to whatever you pass in
-  let addSeventy = add(70)  // ... and so on...
-{% endhighlight %}
+let addTwo = add(2)       // addTwo(); will add two to whatever you pass in
+let addSeventy = add(70)  // ... and so on...
+  {% endhighlight %}
+</p>
+
+<br>
+<h2>Curry! Huh! What is it good for...?</h2>
+<br>
+<p>
+  Okay so we get the gist of how currying works. But what on earth would we use it for?
 </p>
 
 <p>
+  Well it turns out to be good for several things. First of all, lets write a function without currying.
 
+  {% highlight javascript  %}
+var dinner = function(firstIngredient, secondIngredient, restOfTheFuckingIngredients) {
+  return firstIngredient + secondIngredient + restOTheFuckingIngredients
+}
+  {% endhighlight %}
 </p>
+<p>
+  And if we wanted to make dinner we would do this:
 
-<!-- but why would you curry? What's the actual benifit, or more importantly, what's the downside of not? Having one giant function that has a million parameters. -->
+  {% highlight javascript  %}
+var tuesdaysDinner   = dinner(chicken, rice, tumeric)
+var wednesdaysDinner = dinner(beef, rice, tumeric)
+  {% endhighlight %}
+</p>
+<p>
+  Easy enough.
+</p>
+<p>
+  But we are lazy programmers. We hate repitition - we can do better! Rice and tumeric is time consuming to create. If we can create a massive batch of rice and tumeric, we could use it for both meals! But how could we do this....?
+</p>
+<p>
+  <strong>YOU GUESSED IT</strong>. With currying.
+</p>
+<p>
+  First of all let's turn our function that takes three arguments into a nested series of functions that all take one argurment, and return a function.
+  {% highlight javascript  %}
+var partiallyAppliedDinner = function(firstIngredient) {
+  return function(secondIngredient) {
+    return function(lastIngredient) {
+      return firstIngredient + secondIngredient + lastIngredient
+    }
+  }
+}
+  {% endhighlight %}
+</p>
+<p>
+  Now we have curried our function, we can do this:
+
+  {% highlight javascript  %}
+var prep = partiallyAppliedDinner(rice)
+  {% endhighlight %}
+</p>
+<p>
+  <code>rice</code> will be passed in as <code>firstIngredient</code> which means we are returned a function that looks like this:
+
+  {% highlight javascript  %}
+function(secondIngredient) {
+  return function(lastIngredient) {
+    return rice + secondIngredient + lastIngredient
+  }
+}
+  {% endhighlight %}
+
+  which means we can do this:
+
+  {% highlight javascript  %}
+var preppedDinner = partiallyAppliedDinner(rice)(tumeric)
+  {% endhighlight %}
+
+  and <code>tumeric</code> will be passed in as <code>secondIngredient</code>.
+</p>
+<p>
+  This is amazing. Our <code>preppedDinner</code> var evaluates to a function that looks like this:
+
+  {% highlight javascript  %}
+function(lastIngredient) {
+  return rice + tumeric + lastIngredient
+}
+  {% endhighlight %}
+
+  So we can now do this:
+
+  {% highlight javascript  %}
+var tuesdaysDinner   = preppedDinner(chicken)
+var wednesdaysDinner = preppedDinner(beef)
+  {% endhighlight %}
+
+  We now have the expensive <code>rice</code> / <code>tumeric</code> operation memoized for re-use!</p>
+
+<p>
+  We have also discovered an abstraction. We could name this abstraction something like <code>sideDish</code>. We reduced duplication of a common operation (the adding of <code>rice</code> and <code>tumeric</code>) by abstracting it up to a function of it's own - our <code>preppedDinner</code> variable. Crucially, notice how we didn't need to write any other functions to achieve this abstraction. Without currying we could have written two functions, an <code>addRiceAndTumeric()</code> and an <code>addLastIngredient()</code>.Then we could have done some sort of <code>addRiceAndTumeric(rice, tumeric) + addLastIngredient(chicken)</code> travesty. Observe:</p>
+
+<h3>Without Currying</h3>
+  {% highlight javascript  %}
+var addRiceAndTumeric = function(rice, tumeric){
+  return rice + tumeric
+}
+var addLastIngredient = function(lastIngredient, restOfTheIngredients){
+  return lastIngredient + restOfTheIngredients
+}
+
+var tuesdaysDinner   = addLastIngredient(chicken, addRiceAndTumeric(rice, tumeric))
+var wednesdaysDinner = addLastIngredient(beef, addRiceAndTumeric(rice, tumeric))
+  {% endhighlight %}
+
+<h3>With Currying</h3>
+  {% highlight javascript  %}
+var partiallyAppliedDinner = function(firstIngredient) {
+  return function(secondIngredient) {
+    return function(lastIngredient) {
+      return firstIngredient + secondIngredient + lastIngredient
+    }
+  }
+}
+
+var tumericRiceAnd = partiallyAppliedDinner(rice)(tumeric)
+
+var tuesdaysDinner   = tumericRiceAnd(chicken)
+var wednesdaysDinner = tumericRiceAnd(beef)
+  {% endhighlight %}
+
+
+  <h2>Summary</h2>
+
+  <p>
+    To summarise currying is the process of taking a function that takes one or more arguments and turning that into a series of functions that take one argument each, and each return a function. Currying allows us to:
+    <ol>
+      <li>memoize an expensive operation</li>
+      <li>calculate part of a function before we have all of the parameters available</li>
+      <li>achieve abstractions in functional paradigms</li>
+    </ol>
+  </p>
