@@ -1,0 +1,206 @@
+---
+layout: post
+title: Category Theory For Programmers - Monoids
+category: code
+comments: true
+---
+
+<p>
+  This is a series of posts aiming to demystify some of the core concepts of category theory and by extension functional programming. This is part 1, <a href="">part 2 here</a>
+</p>
+
+<h3>Category Theory</h3>
+<p>Category theory is the study of how maths works. If that sounds mental, that's because it is. Usefully the things discovered in category theory have some practical applications for programmers, and in some ways form the foundations of a lot of functional programming.</p>
+
+<p>Learning about category theory, then, is to learn about functional programming. This is why it's important. In fact some languages like haskell make very little sense until we can grasp these basic concepts. With that, let's take a few of these concepts in turn and see what they are all about</p>
+
+<h3>Abstractions</h3>
+
+<p>
+  Before we look at what a monoid is, let's talk about abstractions.
+</p>
+<p>
+  As programmers we work in abstractions. To utilise an abstraction is to find some commonality that can be shared, to isolate it then share it. An example in ruby:
+
+{% highlight ruby  %}
+  class Square
+    def initialize(side)
+      @side = side
+    end
+
+    def area
+      @side * @side
+    end
+
+    def perimeter(side)
+      @side * 4
+    end
+  end
+
+  class Circle
+    def initialize(radius)
+      @radius = radius
+    end
+
+    def area
+      @radius * @radius * pi
+    end
+
+    def perimeter
+      2 * pi * radius
+    end
+  end
+{% endhighlight  %}
+</p>
+<p>
+  The commonality here is the methods they implement. This commonality hints that both <code>Circle</code> and <code>Square</code> are two variations of the same <em>type</em> of thing. If we were to name the type, we would call it a <code>Shape</code>. We can imagine more <code>Shape</code>s, but each one would have to have both an <code>area</code> and a <code>perimiter</code>. That is to say, no matter what else they may or may not have, any shape <em>must</em> have an <code>area</code> and a <code>perimiter</code>. We can isolate these properties and make them available to instances of those types by doing something like this:
+
+{% highlight ruby  %}
+  class Shape
+    def area
+      raise NotImplementedError
+    end
+
+    def perimiter
+      raise NotImplementedError
+    end
+  end
+
+  class Square < Shape
+    def initialize(side)
+      @side = side
+    end
+
+    def area
+      @side * @side
+    end
+
+    def perimeter
+      @side * 4
+    end
+  end
+
+  class Circle < Shape
+    def initialize(radius)
+      @radius = radius
+    end
+
+    def area
+      @radius * @radius * pi
+    end
+
+    def perimeter
+      2 * pi * radius
+    end
+  end
+{% endhighlight  %}
+
+</p>
+<p>
+  This means if we tried to make a <code>Triangle</code> we would <em>have</em> to implement an <code>area</code> and <code>permiter</code> method for it.
+</p>
+
+<p>
+  The flip side of this is that if we know something is a shape, we know that it has an <code>area</code> and a <code>perimiter</code> method. If we know those things for certain there are certain assumptions we can make about shapes. We could write this method for example, and <em>know</em> that it will work for any shape we pass it <em>by definition</em>:
+
+  {% highlight ruby  %}
+    def fits_in_box?(shape)
+      shape.area < 10
+    end
+  {% endhighlight  %}
+</p>
+<p>Pretty powerful stuff.</p>
+
+<h3>Monoids</h3>
+<p>
+  On to monoids. A monoid is a type of abstraction. To see which kind we are going to look at different instances of monoids and identify the commonality between them. Then we can look at what that buys us.
+</p>
+<h4>Addition of Numbers</h4>
+<p>
+  What can we say about addition of numbers? The first thing we can note is that it is <b>Binary</b>. That is to say it requires <em>two</em> numbers to add together, but returns precisely one number.<code>1 + 2 = 3</code>. Three is a bigger number, but it is just one number.
+</p>
+<p>
+  The next thing we can say is that addition of numbers is <b>Associative</b>. What this means is if we add three numbers together, it doesn't matter if we do it like this:
+  {% highlight ruby  %}
+    (1 + 2) + 3 == 6
+  {% endhighlight  %}
+  Or like this:
+  {% highlight ruby  %}
+    1 + (2 + 3) == 6
+  {% endhighlight  %}
+  We get the same answer.
+</p>
+<p>
+  Note that associativity IS NOT ORDER. It is better described as grouping. For addition of numbers we can say that order also doesn't matter. What that means is
+  {% highlight ruby  %}
+    1 + 2 == 3
+  {% endhighlight  %}
+  AND
+  {% highlight ruby  %}
+    2 + 1 == 3
+  {% endhighlight  %}
+  This is known as being <b>Commutative</b>
+</p>
+<p>
+  The final thing to note about addition of numbers is that there is an <b>Identity</b> value. An identity value is a zero value. A zero value is a value whereby if you add to it any other number, you get that number back unchanged. For addition of numbers the zero value is literally 0:
+  {% highlight ruby  %}
+    1 + 0     == 1     # get 1 back unchanged
+    45 + 0    == 45    # get 45 back unchanged
+    0 + 45854 == 45854 # you get the picture
+  {% endhighlight  %}
+</p>
+
+<h4>Multiplication of Numbers</h4>
+<p>What about multiplication now? We need two numbers to multiply together, and we are returned one new number. It's <b>Binary</b>.</p>
+<p>
+  We can multiply a value by <code>1</code> and we are always returned the number we multiply <code>1</code> by. It has an <b>Identity</b>.
+</p>
+<p>
+  We can do this
+  {% highlight ruby  %}
+  5 * (10 * 7)
+  {% endhighlight  %}
+  and it will return the same number as this
+  {% highlight ruby  %}
+  (5 * 10) * 7
+  {% endhighlight  %}
+  It is <b>Associative</b>
+</p>
+<p>Finally multiplication of numbers is also <b>Commutative</b></p>
+
+<h4>Merging of Hashes</h4>
+<p>The last example we will look at is the <code>merge</code> operation for hashes</p>
+<p>
+  <b>Binary</b> - you need two hashes to merge together, and you are returned one hash as a result.
+</p>
+<p>
+  <b>Identity</b> - the identity value is an empty hash <code>{}</code>
+</p>
+<p>
+  <b>Associativity</b> - the grouping of merges doesn't matter:
+  {% highlight ruby  %}
+  a = {a: :b}
+  c = {c: :d}
+  e = {e: :f}
+a.merge(c.merge(e)) == {a: :b, c: :d, e: :f}
+a.merge(c).merge(e) == {a: :b, c: :d, e: :f}
+  {% endhighlight  %}
+</p>
+<p>
+  HOWEVER, note that order <em>does matter</em>. Imagine this scenario
+{% highlight ruby  %}
+  first  = { foo: :bar }
+  second = { foo: :fighters }
+  first.merge(second) == {foo: :fighters}
+  second.merge(first) == {foo: :bar}
+{% endhighlight  %}
+</p>
+
+<p>
+  So out of these three examples we can identify these three things as common to all:
+</p>
+<ul>
+  <li>Identity Value</li>
+  <li>Associativity</li>
+  <li>Binary</li>
+</ul>
