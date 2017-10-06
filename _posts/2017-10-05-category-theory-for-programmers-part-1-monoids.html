@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Category Theory For Programmers - Monoids
+title: Category Theory For Programmers I - Monoids
 category: code
 comments: true
 ---
 
 <p>
-  This is a series of posts aiming to demystify some of the core concepts of category theory and by extension functional programming. This is part 1, <a href="">part 2 here</a>
+  This is a series of posts aiming to demystify some of the core concepts of category theory and by extension functional programming. This is part 1.<!--  <a href="">part 2 here</a> -->
 </p>
 
 <h3>Category Theory</h3>
@@ -113,7 +113,7 @@ comments: true
 
 <h3>Monoids</h3>
 <p>
-  On to monoids. A monoid is a type of abstraction. To see which kind we are going to look at different instances of monoids and identify the commonality between them. Then we can look at what that buys us.
+  On to monoids. A monoid is a type of abstraction. To see which kind we are going to look at different instances of things that are monoids and identify the commonality between them. Then we can look at what that buys us.
 </p>
 <h4>Addition of Numbers</h4>
 <p>
@@ -128,7 +128,7 @@ comments: true
   {% highlight ruby  %}
     1 + (2 + 3) == 6
   {% endhighlight  %}
-  We get the same answer.
+  we'll get the same answer.
 </p>
 <p>
   Note that associativity IS NOT ORDER. It is better described as grouping. For addition of numbers we can say that order also doesn't matter. What that means is
@@ -142,7 +142,7 @@ comments: true
   This is known as being <b>Commutative</b>
 </p>
 <p>
-  The final thing to note about addition of numbers is that there is an <b>Identity</b> value. An identity value is a zero value. A zero value is a value whereby if you add to it any other number, you get that number back unchanged. For addition of numbers the zero value is literally 0:
+  The final thing to note about addition of numbers is that there is an <b>Identity value</b>. An identity value is a zero value. A zero value is a value whereby if you add to it any other number, you get that number back unchanged. For addition of numbers the zero value is literally 0:
   {% highlight ruby  %}
     1 + 0     == 1     # get 1 back unchanged
     45 + 0    == 45    # get 45 back unchanged
@@ -150,23 +150,49 @@ comments: true
   {% endhighlight  %}
 </p>
 
-<h4>Multiplication of Numbers</h4>
-<p>What about multiplication now? We need two numbers to multiply together, and we are returned one new number. It's <b>Binary</b>.</p>
+<h4>Concatinating Arrays</h4>
+<p>To concatenate two arrays, you take the all the elements out of the first array and then all the elements out of the second array and put them all into a new array.</p>
+  {% highlight ruby  %}
+[1,2].concat([3,4]) == [1,2,3,4]
+  {% endhighlight  %}
 <p>
-  We can multiply a value by <code>1</code> and we are always returned the number we multiply <code>1</code> by. It has an <b>Identity</b>.
+  In order to do that you need two arrays, and we can see from above that we are returned one array. It's a bigger array, but it is just one array. So concatenation of arrays is <b>Binary</b> .
+</p>
+
+<p>Now imagine concatenating three arrays. It doesn't matter if we do it like this:
+  {% highlight ruby  %}
+  [1,2].concat([3,4]).concat([5,6])
+  {% endhighlight  %}
+  Or like this:
+  {% highlight ruby  %}
+  [1,2].concat([3,4].concat([5,6]))
+  {% endhighlight  %}
+  we'll get the same answer.
+</p>
+<p>Concatenating arrays is <b>Associative</b> .</p>
+<p>
+  Note here that order does matter.
+{% highlight ruby  %}
+[1,2].concat([3,4]) != [3,4].concat([1,2])
+{% endhighlight  %}
+
+Concatenating arrays is <b>NOT</b> commutative.
 </p>
 <p>
-  We can do this
+  Now imagine concatenating an array to an empty array. We would take the empty out of the first array, and the values out of the second array and make a new array containing both those things.
   {% highlight ruby  %}
-  5 * (10 * 7)
+[].concat([1,2]) == [1,2]
   {% endhighlight  %}
-  and it will return the same number as this
-  {% highlight ruby  %}
-  (5 * 10) * 7
-  {% endhighlight  %}
-  It is <b>Associative</b>
+
+This means whenever we concatenate an empty array we are returned the array we concatenate it with unchanged.
+{% highlight ruby  %}
+[1].concat([])     == [1]     # get [1] back unchanged
+[45].concat([])    == [45]    # get [45] back unchanged
+[].concat([45854]) == [45854] # you get the picture
+{% endhighlight  %}
+
+Arrays, then, have an <b>Identity Value</b> - <code>[]</code>
 </p>
-<p>Finally multiplication of numbers is also <b>Commutative</b></p>
 
 <h4>Merging of Hashes</h4>
 <p>The last example we will look at is the <code>merge</code> operation for hashes</p>
@@ -195,12 +221,46 @@ a.merge(c).merge(e) == {a: :b, c: :d, e: :f}
   second.merge(first) == {foo: :bar}
 {% endhighlight  %}
 </p>
+<p>
+  When the two hashes being merged share the same key, the order in which you merge the hashes will determine which key is overwritten.
+</p>
+<h3>Bringing it all together</h3>
+<p>
+  The commonality here is these properties:</p>
+<ul>
+  <li><b>Identity Value</b></li>
+  <li><b>Associativity</b></li>
+  <li><b>Binary</b></li>
+</ul>
 
 <p>
-  So out of these three examples we can identify these three things as common to all:
+   This commonality hints that the adding of numbers, and the concatenating of arrays and hashes are three variations of the same type of thing. If we were to name that type of thing, we might call it being <code>Appendable</code>. We can imagine more Monoids, but each one would have to be <code>Appendable</code> by obeying these three rules. That is to say, no matter what else they may or may not have, any monoid must be associative, binary and have an identity value. We can isolate these properties and ensure they hold for new kinds of monoids by doing something like this:
 </p>
-<ul>
-  <li>Identity Value</li>
-  <li>Associativity</li>
-  <li>Binary</li>
-</ul>
+
+{% highlight ruby  %}
+RSpec.describe NewMonoid do
+  let(:ten)   { NewMonoid.new(10) }
+  let(:three) { NewMonoid.new(3) }
+  let(:five)  { NewMonoid.new(5) }
+  let(:zero)  { NewMonoid.new(0) }
+
+  it "Is Binary" do
+    expect(ten.append(three).class).to eq NewMonoid
+  end
+
+  it "Is Associative" do
+    expect(ten.append(five).append(three)).to eq ten.append(five.append(three))
+  end
+
+  it "Has Identity" do
+    expect(ten.append(zero)).to eq ten
+  end
+end
+{% endhighlight  %}
+<p>
+  This means if we tried to make a new monoid, we would <em>have</em> to make sure it obeyed those laws.
+</p>
+<p>
+  The flip side of this is that if we know something is a monoid, then we <em>know</em> that it appends things in this way. If we know those things for certain there are certain assumptions we can make about monoids. We could for example split up an expensive concatentation over several threads, and as long as we could guarauntee order was maintained, we would <em>know</em> that the result would be the same as if were executed on a single thread.
+</p>
+<p>Pretty powerful stuff.</p>
