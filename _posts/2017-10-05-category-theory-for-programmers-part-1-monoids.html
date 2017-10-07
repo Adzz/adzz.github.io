@@ -234,7 +234,7 @@ a.merge(c).merge(e) == {a: :b, c: :d, e: :f}
 </ul>
 
 <p>
-   This commonality hints that the adding of numbers, and the concatenating of arrays and hashes are three variations of the same type of thing. If we were to name that type of thing, we might call it being <code>Appendable</code>. We can imagine more Monoids, but each one would have to be <code>Appendable</code> by obeying these three rules. That is to say, no matter what else they may or may not have, any monoid must be associative, binary and have an identity value. We can isolate these properties and ensure they hold for new kinds of monoids by doing something like this:
+   This commonality hints that the adding of numbers, and the concatenating of arrays and hashes are three variations of the same type of thing. If we were to name that type of thing, we might call it being <code>Reduceable</code>. We can imagine more Monoids, but each one would have to be <code>Reduceable</code> by obeying these three rules. That is to say, no matter what else they may or may not have, any monoid must be associative, binary and have an identity value. We can isolate these properties and ensure they hold for new kinds of monoids by doing something like this:
 </p>
 
 {% highlight ruby  %}
@@ -261,6 +261,6 @@ end
   This means if we tried to make a new monoid, we would <em>have</em> to make sure it obeyed those laws.
 </p>
 <p>
-  The flip side of this is that if we know something is a monoid, then we <em>know</em> that it appends things in this way. If we know those things for certain there are certain assumptions we can make about monoids. We could for example split up an expensive concatentation over several threads, and as long as we could guarauntee order was maintained, we would <em>know</em> that the result would be the same as if were executed on a single thread.
+  The flip side of this is that if we know something is a monoid, then we <em>know</em> that it reduces things in this way. If we know those things for certain there are certain assumptions we can make about monoids. We could for example split up an expensive reduction over several threads, and as long as we could guarauntee order was maintained, we would <em>know</em> that the result would be the same as if were executed on a single thread.
 </p>
 <p>Pretty powerful stuff.</p>
