@@ -168,11 +168,9 @@ comments: true
   {% highlight ruby  %}
   [1,2].concat([3,4].concat([5,6]))
   {% endhighlight  %}
-  we'll get the same answer.
-</p>
-<p>Concatenating arrays is <b>Associative</b> .</p>
+  we'll get the same answer. Concatenating arrays is <b>Associative</b> .</p>
 <p>
-  Note here that order does matter.
+  Note here however that order DOES matter.
 {% highlight ruby  %}
 [1,2].concat([3,4]) != [3,4].concat([1,2])
 {% endhighlight  %}
@@ -239,29 +237,55 @@ a.merge(c).merge(e) == {a: :b, c: :d, e: :f}
 </p>
 
 {% highlight ruby  %}
-RSpec.describe NewMonoid do
-  let(:ten)   { NewMonoid.new(10) }
-  let(:three) { NewMonoid.new(3) }
-  let(:five)  { NewMonoid.new(5) }
-  let(:zero)  { NewMonoid.new(0) }
+require "spec_helper"
+require "number"
+
+RSpec.describe Number do
+  let(:ten)   { Number.new(10) }
+  let(:three) { Number.new(3) }
+  let(:five)  { Number.new(5) }
+  let(:identity_value)  { Number.new(1) }
 
   it "Is Binary" do
-    expect(ten.append(three).class).to eq NewMonoid
+    expect(ten.multiply(three).class).to eq Number
   end
 
   it "Is Associative" do
-    expect(ten.append(five).append(three)).to eq ten.append(five.append(three))
+    expect(ten.multiply(five).multiply(three)).to eq ten.multiply(five.multiply(three))
   end
 
-  it "Has Identity" do
-    expect(ten.append(zero)).to eq ten
+  it "Has an Identity value" do
+    expect(ten.multiply(identity_value)).to eq ten
+    expect(identity_value.multiply(ten)).to eq ten
+  end
+end
+
+class Number
+  def initialize(value)
+    @value = value
+  end
+
+  attr_reader :value
+
+  def multiply(other)
+    return other if @value == 1
+    return self if other.value == 1
+    Number.new(@value * other.value)
+  end
+
+  def ==(other)
+    other.value == value
   end
 end
 {% endhighlight  %}
 <p>
-  This means if we tried to make a new monoid, we would <em>have</em> to make sure it obeyed those laws.
+  This means we can be sure our new monoid would obey those laws.
 </p>
 <p>
-  The flip side of this is that if we know something is a monoid, then we <em>know</em> that it reduces things in this way. If we know those things for certain there are certain assumptions we can make about monoids. We could for example split up an expensive reduction over several threads, and as long as we could guarauntee order was maintained, we would <em>know</em> that the result would be the same as if were executed on a single thread.
+  If we are sure what we have are monoids, then we can do things which leverage those laws and <em>know</em> that our monoid type things will not break. But what kind of things can we do?</p>
+
+<h4>What do monoids buy us?</h4>
+<p>
+  If we know that something is associative, then we know that, as long as order is maintained, we can break up the total workload in any arbritrary way and we would always get the same result. Imagine if we had to compute an expensive addition operation. We could split the overall problem into many subproblems and pass each subproblem off to different threads. We could still guarantee the answer would be the same as if we didn't, because we know the law of associativity holds!
 </p>
 <p>Pretty powerful stuff.</p>
