@@ -29,3 +29,4 @@ highlighter:      rouge
 plugins: [jekyll-paginate, jekyll-gist, jekyll-seo-tag]
 github:
   repo:           https://github.com/adzz
+google_analytics: 'UA-107847464-1'
