@@ -1,0 +1,114 @@
+---
+layout: post
+title: Category Theory For Programmers II - Functors
+category: code
+comments: true
+---
+
+<p>
+  This is part 2 in the series. It is best read in order. Find <a href="http://adzz.github.io/code/2017/10/05/category-theory-for-programmers-part-1-monoids/">part one here</a>. <!-- <a href="">part 3 </a> -->
+</p>
+
+<p>
+  Category theory is very intimidating. There are words like comonad. Endofunctor. Applicative. It reminded me of when I first started programming and I would here people say things like
+</p>
+<blockquote>Just ssh into the server and grep for clues until you grok what's happening.</blockquote>
+
+<p>Right.</p>
+
+<p>
+  The trick, I realised, was to take that scary subject and pare it back to something we <em>can</em> understand.
+</p>
+
+<p>Let's go from Category Theory...</p>
+
+<p>.... to Category...</p>
+
+<p>
+  ...to to Cat.
+</p>
+
+<p>Let's talk about Cats</p>
+
+<h2>Cats</h2>
+
+<p>Cats love boxes [pictured].</p>
+<img src="/assets/images/blog-images/cat_box.jpg">
+
+<p>
+  Boxes are good because you can do things like put food in the bottom of a box. That means whenever a cat goes inside, they’ll always be able to eat. Which means we never have hungry cats!
+</p>
+<p>
+  We can think of these boxes as sort of adding an extra context to the cat. For the food box, the context would be 'non hungry cat', such that we could <em>know</em> that any cat in our food box is not hungry.
+
+  That means we could turn stuff like this:
+</p>
+{% highlight ruby  %}
+  def pet_if_not_hungry(cat)
+    if cat.hungry?
+      return
+    else
+      cat.pet
+    end
+  end
+{% endhighlight %}
+
+<p>  into this:</p>
+
+{% highlight ruby  %}
+  cat = FoodBox.new(Cat.new)
+
+  def pet_if_not_hungry(cat)
+    food_box_cat.pet
+  end
+{% endhighlight %}
+
+
+
+<p>
+  In fact we could think of a whole host of different kinds of boxes that add different kinds of contexts to the things we put inside them. We could imagine a compartmentalised box, where several cats could sit right next to each other. We could call it an array_box
+</p>
+<img src="/assets/images/blog-images/arr_box.png">
+<p>
+  We could imagine a kind of schrodinger's box, where maybe the cat is inside it, maybe it’s not. This would be useful if we orderd the cat online, and we didn’t trust the postman. To save us the misery of trying to pet a cat that isn’t there, we treat it like a schrodingers box and do stuff that gets done if the cat’s there, and if it’s not, we just choose to never open the box to find out.
+</p>
+<p>
+  We’ll call it a maybe_box.
+</p>
+<img src="/assets/images/blog-images/maybe_box.png">
+
+<p>
+  For the array-box the context is the ordered grouping of cats. For the maybe-box, the context is that a cat might be in there or not, but our programs aren’t going to break if its not.
+</p>
+<p>
+  There is just one thing. We still want to be able to do things like pet the cat, and give it it’s injections even when it’s inside a box.
+</p>
+<p>
+  How can we achieve that?
+</p>
+<p>In ruby we'd do it like this:</p>
+
+{% highlight ruby  %}
+  cat_1 = Cat.new
+  cat_2 = Cat.new
+
+ [cat_1, cat_2].map {|cat| cat.pet }
+{% endhighlight  %}
+
+<p>
+  This magical map function allows us to operate on values wrapped inside of containers. That means we can wrap our values in these super handy containers and contexts, but still have a way to operate on those values.
+</p>
+<h2>Map</h2>
+<p>
+  Let's look at this map function. What can we say about it?
+</p>
+<p>
+  The first thing we can say about it is that it is associative. That means that the grouping of function application doesn't matter. Observe:
+
+{% highlight ruby  %}
+ [cat_1, cat_2].map {|cat| cat.pet }.map {|petted_cat| cat.water }
+{% endhighlight  %}
+</p>
+
+
+
