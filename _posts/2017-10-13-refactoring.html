@@ -1,0 +1,53 @@
+---
+layout: post
+title: Refactoring
+category: code
+comments: true
+---
+
+<p>The first premise is that all software is written to serve the business. That means, it is our responsibility to write software cost effectively.<p>
+
+<p>Refactoring is the process of changing how code is implemented, without changing what it actually does.
+
+<p>Sounds a bit ridiculous, right? Why would we want to bother changing something without actually changing it. How can that possibly be cost effective?
+
+<p>To understand why we might do this let's think about software.
+
+<p>It isn't good enough for software to just work.
+
+<p>Any piece of code I write is going to be read by other developers in the team and by myself in the future. The time spent reading that code is going to far outweigh the amount of time spent writing it.
+
+<p>None of those people are going to have the context of what was going on at the time of writing - you'll even have forgotten why you wrote what you wrote. Because of all of this it is crucially important that the code is written in a way that can be easily understood.
+
+<p>Furthermore, as we discussed before, change is ever present in software development. Therefore the best software will be software that is resilient to changes, or able to adapt to them quickly.</p>
+
+<p>More often than not to get code to this level of quality can be slower than just getting it to work. That means this level of quality involves a tradeoff with time taken to complete.</p>
+
+<p>As our first premise said, programming has to be cost effective. That means we should never build features that we don't need yet (YAGNI). Spending time making your code resilient to changes will probably be a waste of time, because simply put, you don’t know which changes are going to be required.</p>
+
+<p>If we don’t know what features or changes might be coming, then how can we know what changes we should make our software resilient to?</p>
+
+<p>So we need to be resilient to changes without ever trying to anticipate which change is gonna come.</p>
+
+<p>How the hell can we do that?</p>
+
+<h3>The Worst Restaurant In The World</h3>
+
+<p>Imagine you are a chef. You work at The Worst Restaurant In The World(tm). It's earnt it's name because it makes 0 profit. In fact for every diner that comes in, the restaurant earns just enough profit to run the dishwasher once.</p>
+
+<p>On Tuesday, one diner comes in eats and leaves, (never to return again).</p>
+
+<p>You could run the dishwasher and break-even on the day. All the plates are clean, the kitchen is ready to go for the next diner, if there is one.</p>
+
+<p>But you have an idea. Instead of running the dishwasher for one measly plate, you let the plate sit there.</p>
+<p>Then on Wednesday you get one more dinner. The same thing happens.</p>
+
+<p>By two weeks later, you have one full dishwasher load of dirty plates. You have enough profit to run the dishwasher 14 times, but because you waited, you can run it once as a full load, and keep the rest of the money.</p>
+
+<p>Yay! We are in profit! We are no longer The Worst Restaurant In The World(tm). (Unfortunately renaming the restaurant cost so much that we are break even again.)</p>
+
+<p>We are like the chef in that story. Sometimes it makes sense to leave a bit of mess in the code until there is a real business need to fix it. This is called technical debt.</p>
+
+<p>The implication of this is that something that sounds easy may take longer than initially planned to complete, because we need to wash the dishes first. That’s what refactoring is. That's how we stay cost effective.</p>
+
+
