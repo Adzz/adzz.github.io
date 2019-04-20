@@ -1,37 +1,79 @@
----
-layout: default
-title: Home
----
-
-<div class="posts">
-  {% for post in paginator.posts %}
-  <div class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1>
-
-    <span class="post-date">{{ post.date | date_to_string }}</span>
-
-    {{ post.content }}
-  </div>
-  {% endfor %}
-</div>
-
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}">Newer</a>
-    {% else %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">Newer</a>
-    {% endif %}
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homepage of Adz</title>
+  </head>
+  <body>
+    <header>
+      <h1>Adz</h1>
+    </header>
+    <section>
+      <h2>Articles</h2>
+      <ul>
+        <li>
+          <a
+            href="https://medium.com/@ItizAdz/ecto-changesets-put-cast-embeds-and-assocs-remember-the-difference-once-and-for-all-10781cc60857"
+            >Ecto Changesets — put, cast, embeds and assocs. Remember the
+            difference once and for all!</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://tech.nested.com/mentorship-at-nested-part-2-coaching-16ff5357e927"
+            >Mentorship at Nested part 2: Coaching</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://medium.com/@ItizAdz/mentorship-at-nested-part-1-a-call-to-arms-5d9fa441e466"
+            >Mentorship at nested part 1: A call to arms</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://tech.nested.com/solving-the-expression-problem-with-elixir-916bb9b5dd74"
+            >Solving the expression problem with elixir</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://tech.nested.com/shape-up-with-elixir-protocols-fc78482ec4fc"
+            >Shape up with elixir protocols</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://tech.nested.com/tech-for-the-non-technical-refactoring-2f80106db689"
+            >Tech for the non technical - Refactoring</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://medium.com/@ItizAdz/back-to-front-end-ii-73e5c881d287"
+            >Back to front(end) II</a
+          >
+        </li>
+        <li>
+          <a href="https://medium.com/@ItizAdz/back-to-front-end-b22cbf2c30a3"
+            >Back to front(end)</a
+          >
+        </li>
+        <li>
+          <a href="https://medium.com/@ItizAdz/currying-in-java-ede80823f339"
+            >Currying</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://blog.makersacademy.com/all-the-tests-you-cannot-see-3191a4109cfe"
+            >All the tests you cannot see</a
+          >
+        </li>
+      </ul>
+      <a href="https://twitter.com/ItizAdz">Twitter</a>
+      <a href="https://www.linkedin.com/in/adam-lancaster-9845a23a/"
+        >Linkedin</a
+      >
+    </section>
+  </body>
+</html>
