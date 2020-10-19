@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5 {
   font-family: 'Playfair Display', serif;
 }
 .header-head {
-  max-width: 850px;
+  max-width: 750px;
   text-align: center;
   border-bottom: 2px solid #2f2f2f;
   margin: 0 auto 15px auto;
@@ -59,12 +59,12 @@ h1, h2, h3, h4, h5 {
   align-items: center;
   /*border-right: 1px solid #2f2f2f;*/
   /*border-left: 1px solid #2f2f2f;*/
-  width: 66%;
+  max-width: 750px;
 }
 .card {
     font-size: 14px;
     line-height: 20px;
-    width: 75%;
+    max-width: 750px;
     display: inline-block;
     padding: 0 1% 0 1%;
     vertical-align: top;
