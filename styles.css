@@ -71,6 +71,7 @@ h1, h2, h3, h4, h5 {
     transition: all .7s;
     padding-bottom: 30px;
     border-bottom: 1px solid #2f2f2f;
+    margin-bottom: 15px;
 }
 
 .card .headline{
