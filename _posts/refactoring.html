@@ -1,0 +1,48 @@
+Here at nested.com we have a great range of people from all different careers. Sometimes it’s helpful for non technical staff to understand how we work as developers. This article aims to shed some light on what refactoring is and why we do it.
+
+All software here at nested is written to serve the business. That means, it is our responsibility to write software cost effectively.
+
+Refactoring is the process of changing how code is implemented, without changing what it actually does.
+
+Sounds a bit ridiculous, right? Why would we want to bother changing something without actually changing it. How can that possibly be cost effective?
+
+To understand why we might do this let’s think about software.
+
+It isn’t good enough for software to just work.
+
+Any piece of code I write is going to be read by other developers in the team and by myself in the future. The time spent reading that code is going to far outweigh the amount of time spent writing it.
+
+None of those people are going to have the context of what was going on at the time of writing — you’ll even have forgotten why you wrote what you wrote. Because of all of this it is crucially important that the code is written in a way that can be easily understood.
+
+Furthermore, change is ever present in software development. Requirements change, business needs change, and so our software will inevitably change. Therefore the best software will be software that is resilient to changes, or able to adapt to them quickly.
+
+More often than not to get code to this level of quality can be slower than just getting it to work. That means this level of quality involves a tradeoff with time taken to complete.
+
+As our first premise said, programming has to be cost effective. That means we should never build features that we don’t need yet. Spending time making your code resilient to changes will probably be a waste of time, because simply put, you don’t know which changes are going to be required.
+
+If we don’t know what features or changes might be coming, then how can we know what changes we should make our software resilient to?
+
+So we need to be resilient to changes without ever trying to anticipate which change is gonna come.
+
+How can we do that….?
+The Worst Restaurant In The World™
+
+Imagine you are a chef. You work at The Worst Restaurant In The World™. It’s earnt it’s name because it makes 0 profit. In fact for every diner that comes in, the restaurant earns just enough profit to run the dishwasher once.
+
+On Tuesday, one diner comes in eats and leaves, (never to return again).
+
+You could run the dishwasher and break-even on the day. All the plates are clean, the kitchen is ready to go for the next diner, if there is one.
+
+But you have an idea. Instead of running the dishwasher for one measly plate, you let the plate sit there. Then on Wednesday you get one more diner. The same thing happens.
+
+By two weeks later, you have one full dishwasher load of dirty plates. You have enough profit to run the dishwasher 14 times, but because you waited, you can run it once as a full load, and keep the rest of the money.
+
+Yay! We are in profit! We are no longer The Worst Restaurant In The World™. (Unfortunately renaming the restaurant cost so much that we are break even again.)
+
+We are like the chef in that story. Sometimes it makes sense to leave a bit of mess in the code until there is a real business need to fix it. This is called technical debt.
+
+However, if the plates stack up too much, we’ll have a dirty kitchen and no one will want to dine there ever. The more dirty plates there are, the harder it will be to move around the kitchen and cook any food.
+
+The implication of this is that we have to balance not building up too much technical debt, with remaining cost effective.
+
+That means sometimes something that sounds easy may take longer than initially planned to complete, because we need to wash the dishes first. That’s what refactoring is. That’s how we stay cost effective.
